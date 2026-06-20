@@ -1,0 +1,251 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+  .pc-root {
+    background: transparent;
+    color: var(--color-text-primary);
+    font-family: 'Cormorant Garamond', var(--font-serif);
+    padding: 2.5rem 2rem 3rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .pc-rule-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+  }
+
+  .pc-rule-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--color-border-primary);
+  }
+
+  .pc-seal {
+    width: 36px;
+    height: 36px;
+    border: 0.5px solid var(--color-border-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .pc-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 1rem;
+  }
+
+  .pc-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .pc-title-sub {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.08em;
+    margin-bottom: 2.5rem;
+  }
+
+  .pc-divider {
+    width: 48px;
+    height: 0.5px;
+    background: var(--color-border-primary);
+    margin-bottom: 2rem;
+  }
+
+  .pc-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: pc-fadein 1.8s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  .pc-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: pc-fadein 1.8s ease forwards;
+  }
+
+  .pc-body:nth-child(1) { animation-delay: 1.1s; }
+  .pc-body:nth-child(2) { animation-delay: 1.6s; }
+  .pc-body:nth-child(3) { animation-delay: 2.1s; }
+
+  .pc-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin: 2rem 0;
+    opacity: 0;
+    animation: pc-fadein 1.5s ease forwards;
+    animation-delay: 2.6s;
+  }
+
+  .pc-pillar {
+    padding: 1.25rem 1rem;
+    background: var(--color-background-secondary);
+    border-right: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .pc-pillar:last-child { border-right: none; }
+
+  .pc-pillar-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: 0.4rem;
+  }
+
+  .pc-pillar-text {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+
+  .pc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--color-border-tertiary);
+    opacity: 0;
+    animation: pc-fadein 1.5s ease forwards;
+    animation-delay: 3s;
+  }
+
+  .pc-footer-left {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+  }
+
+  .pc-footer-greek {
+    font-family: 'IM Fell English', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+  }
+
+  .pc-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--color-text-tertiary);
+    line-height: 1.7;
+    border-left: 1px solid var(--color-border-secondary);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    opacity: 0;
+    animation: pc-fadein 1.5s ease forwards;
+    animation-delay: 3.2s;
+  }
+
+  @keyframes pc-fadein {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="pc-root">
+  <h2 class="sr-only">Paradoxa Chronicle — Mission statement and organizational overview</h2>
+
+  <div class="pc-rule-top">
+    <div class="pc-rule-line"></div>
+    <div class="pc-seal">Π</div>
+    <div class="pc-rule-line"></div>
+  </div>
+
+  <div class="pc-eyebrow">Est. in perpetuity &nbsp;·&nbsp; Paradoxa Chronicle</div>
+  <div class="pc-title">Paradoxa<br>Chronicle</div>
+  <div class="pc-title-sub">παράδοξα χρονικόν &nbsp;·&nbsp; Things Beyond Expectation, Recorded</div>
+
+  <div class="pc-divider"></div>
+
+  <div class="pc-statement">
+    We do not pursue. We do not contain.<br>
+    We bear witness, and we write it down.
+  </div>
+
+  <div class="pc-body" style="animation-delay:1.1s">
+    The Paradoxa Chronicle is a record-keeping body of historians, philosophers, and theologians united by a single conviction: that the world contains events which no single tradition — scientific, religious, or otherwise — has been sufficient to explain. Our purpose is not to explain them. Our purpose is to ensure they are never forgotten, and never falsified.
+  </div>
+
+  <div class="pc-body" style="animation-delay:1.6s">
+    Our records stretch across centuries and languages. What was called a miracle in a 12th century monastery appears again in a police report filed in 1931, and again in a witness account from 1955. We hold all three. We draw no conclusion between them. The Chronicle exists precisely because conclusions have, historically, been the first thing to disappear.
+  </div>
+
+  <div class="pc-pillars">
+    <div class="pc-pillar">
+      <div class="pc-pillar-label">First tradition</div>
+      <div class="pc-pillar-text">Faith &amp; scripture</div>
+    </div>
+    <div class="pc-pillar">
+      <div class="pc-pillar-label">Second tradition</div>
+      <div class="pc-pillar-text">Philosophy &amp; reason</div>
+    </div>
+    <div class="pc-pillar">
+      <div class="pc-pillar-label">Third tradition</div>
+      <div class="pc-pillar-text">History &amp; testimony</div>
+    </div>
+  </div>
+
+  <div class="pc-body" style="animation-delay:2.1s">
+    We are not affiliated with any government, institution, or church — though members of each have contributed to our records. We do not act. We do not intervene. When something that should not exist leaves evidence that it does, we collect that evidence, cross-reference it against everything that came before, and add it to the Archive.
+  </div>
+
+  <div class="pc-note">
+    "The oldest records in the Archive are written in Hebrew. When the philosophers arrived, they translated what they could into Greek. There are entries that could not be translated. Those remain as they were."
+    <br><br>— Archivist's preface, undated
+  </div>
+
+  <div class="pc-footer">
+    <div class="pc-footer-left">
+      Paradoxa Chronicle Archive<br>
+      Continuous record. No terminus.
+    </div>
+    <div class="pc-footer-greek">παράδοξα</div>
+  </div>
+</div>
