@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cases · Paradoxa Chronicle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1A1A18;
+    --ink-mid: #4A4844;
+    --ink-soft: #6B6B5F;
+    --ink-faint: #9A9A8E;
+    --page: #F0EBE1;
+    --page-dark: #E4DDD1;
+    --page-darker: #D4CEC4;
+    --white: #FDFAF6;
+    --red-mute: #8B3A3A;
+    --green-mute: #4A7C59;
+    --amber-mute: #8B6A3A;
+    --sidebar-w: 220px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--page);
+    border-bottom: 0.5px solid var(--page-darker);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    gap: 1rem;
+  }
+
+  .nav-back {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-back:hover { color: var(--ink); }
+  .nav-back::before { content: '←'; font-size: 14px; }
+
+  .nav-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-seal {
+    width: 28px;
+    height: 28px;
+    border: 0.5px solid var(--page-darker);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+
+  .nav-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-mid);
+    letter-spacing: 0.06em;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+  }
+
+  .nav-tab {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-tab:hover { color: var(--ink); }
+  .nav-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    min-height: calc(100vh - 56px);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    border-right: 0.5px solid var(--page-darker);
+    padding: 2rem 1.5rem;
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sidebar-seal-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--page-darker);
+  }
+
+  .sidebar-seal-big {
+    width: 56px;
+    height: 56px;
+    border: 0.5px solid var(--page-darker);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 22px;
+    color: var(--ink-soft);
+  }
+
+  .sidebar-seal-name {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-mid);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .sidebar-seal-sub {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .sidebar-section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Cormorant Garamond', serif;
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar-nav-link {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .sidebar-nav-link:last-child { border-bottom: none; }
+  .sidebar-nav-link:hover { color: var(--ink); }
+  .sidebar-nav-link.active { color: var(--ink); font-style: italic; }
+
+  .sidebar-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+  }
+  .sidebar-stat:last-child { border-bottom: none; }
+
+  .sidebar-stat-key {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .sidebar-stat-val {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-mid);
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-faint);
+    text-align: center;
+    opacity: 0.5;
+    letter-spacing: 0.08em;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    padding: 2.5rem 2.5rem 4rem;
+    max-width: 860px;
+  }
+
+  .main-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Cormorant Garamond', serif;
+    margin-bottom: 0.5rem;
+  }
+
+  .main-title {
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+    line-height: 1.15;
+  }
+
+  .main-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    margin-bottom: 1.75rem;
+  }
+
+  /* PUBLIC ACCESS NOTICE */
+  .notice {
+    background: var(--white);
+    border: 0.5px solid var(--page-darker);
+    border-left: 2px solid var(--ink-soft);
+    border-radius: 0 8px 8px 0;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .notice-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Cormorant Garamond', serif;
+    margin-bottom: 0.4rem;
+  }
+
+  .notice-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.75;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 1.75rem 0 1.25rem;
+  }
+
+  .section-divider-line { flex: 1; height: 0.5px; background: var(--page-darker); }
+
+  .section-divider-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Cormorant Garamond', serif;
+    white-space: nowrap;
+  }
+
+  /* CASE CARD */
+  .case-card {
+    background: var(--white);
+    border: 0.5px solid var(--page-darker);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .case-card:hover { border-color: var(--ink-soft); }
+
+  .case-card-id {
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.3rem;
+  }
+
+  .case-card-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .case-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .case-card-year {
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.06em;
+  }
+
+  .case-card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 0.5px solid;
+    white-space: nowrap;
+  }
+
+  .status-dot-sm {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .badge-active    { background: #EDF4F0; border-color: #A8C8B4; color: #3A6B4A; }
+  .badge-dormant   { background: #F2F2EC; border-color: #C4C4A8; color: #5A5A40; }
+  .badge-closed    { background: #F0EFED; border-color: #C4C2BE; color: #606060; }
+  .badge-unresolved{ background: #F4F0EA; border-color: #C8B898; color: #6B5030; }
+  .badge-missing   { background: #F4EDED; border-color: #C8A8A8; color: #7A3030; }
+
+  .dot-active-sm    { background: #4A7C59; }
+  .dot-dormant-sm   { background: #7A7A5A; }
+  .dot-closed-sm    { background: #888780; }
+  .dot-unresolved-sm{ background: #8B6A3A; }
+  .dot-missing-sm   { background: var(--red-mute); }
+
+  .view-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--page);
+    border: 0.5px solid var(--page-darker);
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .view-btn:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+  /* RESTRICTED CARDS */
+  .case-card-restricted {
+    background: var(--white);
+    border: 0.5px solid var(--page-darker);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    opacity: 0.65;
+  }
+
+  .case-card-restricted-id {
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .redacted-bar {
+    height: 18px;
+    background: var(--ink);
+    border-radius: 3px;
+    margin-bottom: 0.4rem;
+  }
+
+  .redacted-bar-sm {
+    height: 12px;
+    background: var(--page-darker);
+    border-radius: 3px;
+  }
+
+  .restricted-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* FULLY BLACKED OUT */
+  .case-card-blacked {
+    background: var(--ink);
+    border: 0.5px solid var(--ink);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .blacked-bar {
+    height: 12px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+  }
+
+  .blacked-bar-wide { width: 60%; }
+  .blacked-bar-mid  { width: 40%; }
+  .blacked-bar-sm   { width: 25%; }
+
+  .blacked-badge {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.15);
+    font-family: 'Cormorant Garamond', serif;
+    padding: 4px 10px;
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 99px;
+  }
+
+  /* FOOTER NOTE */
+  .footer-note {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--page-darker);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .footer-note-text {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-faint);
+    line-height: 1.7;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .footer-greek {
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-faint);
+    opacity: 0.4;
+  }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: 2rem 1.25rem 3rem; }
+    nav { padding: 0 1rem; }
+    .nav-title { display: none; }
+    .case-card { grid-template-columns: 1fr; }
+    .case-card-right { flex-direction: row; align-items: center; justify-content: space-between; }
+    .case-card-restricted { grid-template-columns: 1fr; }
+    .case-card-blacked { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">Blue Tail Studio</a>
+  <div class="nav-center">
+    <div class="nav-seal">Π</div>
+    <div class="nav-title">Paradoxa Chronicle</div>
+  </div>
+  <div class="nav-tabs">
+    <a href="chronicle.html" class="nav-tab">Archive</a>
+    <a href="chronicle.html" class="nav-tab">How We Record</a>
+    <a href="cases.html" class="nav-tab active">Cases</a>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-seal-wrap">
+      <div class="sidebar-seal-big">Π</div>
+      <div class="sidebar-seal-name">Paradoxa<br>Chronicle</div>
+      <div class="sidebar-seal-sub">Case Index</div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">Navigate</div>
+      <a href="chronicle.html" class="sidebar-nav-link">Archive</a>
+      <a href="chronicle.html" class="sidebar-nav-link">How We Record</a>
+      <a href="cases.html" class="sidebar-nav-link active">Cases</a>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">Index stats</div>
+      <div class="sidebar-stat">
+        <div class="sidebar-stat-key">Public records</div>
+        <div class="sidebar-stat-val">1</div>
+      </div>
+      <div class="sidebar-stat">
+        <div class="sidebar-stat-key">Restricted</div>
+        <div class="sidebar-stat-val">—</div>
+      </div>
+      <div class="sidebar-stat">
+        <div class="sidebar-stat-key">Earliest entry</div>
+        <div class="sidebar-stat-val">1830</div>
+      </div>
+      <div class="sidebar-stat">
+        <div class="sidebar-stat-key">Active cases</div>
+        <div class="sidebar-stat-val">1</div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">παράδοξα</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="main-eyebrow">Paradoxa Chronicle · Public Index</div>
+    <h1 class="main-title">Case Records</h1>
+    <div class="main-subtitle">Public access · Selected entries only</div>
+
+    <div class="notice">
+      <div class="notice-label">Public access notice</div>
+      <div class="notice-text">
+        The following records have been released for general access by the Archive. They are made available not for the purposes of research or curiosity, but because awareness of their contents has been deemed necessary. All other records remain restricted. The Chronicle assumes no responsibility for what the reader does with this information.
+      </div>
+    </div>
+
+    <!-- PUBLIC CASES -->
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <div class="section-divider-label">Public records</div>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <a href="#" class="case-card">
+      <div class="case-card-left">
+        <div class="case-card-id">PC · 1830 · ENT · 167</div>
+        <div class="case-card-title">The Proprietor</div>
+        <div class="case-card-meta">
+          <div class="case-card-year">Active since 1830 &nbsp;·&nbsp; Entity</div>
+        </div>
+      </div>
+      <div class="case-card-right">
+        <div class="status-badge badge-active">
+          <div class="status-dot-sm dot-active-sm"></div>
+          Active
+        </div>
+        <button class="view-btn">View Record</button>
+      </div>
+    </a>
+
+    <!-- RESTRICTED SECTION -->
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <div class="section-divider-label">Restricted records</div>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <!-- Restricted: ID visible, title redacted -->
+    <div class="case-card-restricted">
+      <div>
+        <div class="case-card-restricted-id">PC · 1743 · ENT · 088</div>
+        <div class="redacted-bar" style="width: 55%;"></div>
+        <div class="redacted-bar-sm" style="width: 35%; margin-top: 6px;"></div>
+      </div>
+      <div style="text-align: right;">
+        <div class="restricted-label">Restricted</div>
+      </div>
+    </div>
+
+    <!-- Restricted: ID visible, title redacted -->
+    <div class="case-card-restricted">
+      <div>
+        <div class="case-card-restricted-id">PC · 1651 · PHN · 042</div>
+        <div class="redacted-bar" style="width: 70%;"></div>
+        <div class="redacted-bar-sm" style="width: 45%; margin-top: 6px;"></div>
+      </div>
+      <div style="text-align: right;">
+        <div class="restricted-label">Restricted</div>
+      </div>
+    </div>
+
+    <!-- Fully blacked out -->
+    <div class="case-card-blacked">
+      <div>
+        <div class="blacked-bar blacked-bar-mid"></div>
+        <div class="blacked-bar blacked-bar-wide"></div>
+        <div class="blacked-bar blacked-bar-sm" style="margin-top: 6px;"></div>
+      </div>
+      <div>
+        <div class="blacked-badge">Restricted</div>
+      </div>
+    </div>
+
+    <!-- Fully blacked out -->
+    <div class="case-card-blacked">
+      <div>
+        <div class="blacked-bar blacked-bar-sm"></div>
+        <div class="blacked-bar blacked-bar-wide"></div>
+        <div class="blacked-bar blacked-bar-mid" style="margin-top: 6px;"></div>
+      </div>
+      <div>
+        <div class="blacked-badge">Restricted</div>
+      </div>
+    </div>
+
+    <!-- Restricted: ID visible -->
+    <div class="case-card-restricted">
+      <div>
+        <div class="case-card-restricted-id">PC · 1412 · ENT · 011</div>
+        <div class="redacted-bar" style="width: 45%;"></div>
+        <div class="redacted-bar-sm" style="width: 30%; margin-top: 6px;"></div>
+      </div>
+      <div style="text-align: right;">
+        <div class="restricted-label">Restricted</div>
+      </div>
+    </div>
+
+    <!-- Fully blacked out -->
+    <div class="case-card-blacked">
+      <div>
+        <div class="blacked-bar blacked-bar-wide"></div>
+        <div class="blacked-bar blacked-bar-mid"></div>
+        <div class="blacked-bar blacked-bar-sm" style="margin-top: 6px;"></div>
+      </div>
+      <div>
+        <div class="blacked-badge">Restricted</div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <div class="footer-note-text">
+        Further records exist within the Archive.<br>
+        Access is not granted upon request.
+      </div>
+      <div class="footer-greek">παράδοξα</div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
