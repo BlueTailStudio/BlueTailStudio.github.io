@@ -13,17 +13,17 @@
 
   :root {
     --ink: #1A1A18;
-    --ink-mid: #4A4844;
-    --ink-soft: #6B6B5F;
-    --ink-faint: #9A9A8E;
+    --ink-mid: #3A3835;
+    --ink-soft: #5A5855;
+    --ink-faint: #7A7870;
     --page: #F0EBE1;
     --page-dark: #E4DDD1;
-    --page-darker: #D4CEC4;
+    --page-darker: #CEC8BE;
     --white: #FDFAF6;
-    --red-mute: #8B3A3A;
-    --green-mute: #4A7C59;
-    --amber-mute: #8B6A3A;
-    --sidebar-w: 220px;
+    --scarlet: #8B1A1A;
+    --scarlet-light: #B52020;
+    --scarlet-pale: #F5EAEA;
+    --sidebar-w: 240px;
   }
 
   html { scroll-behavior: smooth; }
@@ -41,8 +41,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--page);
-    border-bottom: 0.5px solid var(--page-darker);
+    background: var(--ink);
     padding: 0 2rem;
     display: flex;
     align-items: center;
@@ -53,19 +52,20 @@
 
   .nav-back {
     font-family: 'Nunito', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.5);
     text-decoration: none;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 6px;
     transition: color 0.2s;
     white-space: nowrap;
   }
-  .nav-back:hover { color: var(--ink); }
-  .nav-back::before { content: '←'; font-size: 14px; }
+  .nav-back:hover { color: rgba(255,255,255,0.9); }
+  .nav-back::before { content: '←'; font-size: 13px; }
 
   .nav-center {
     display: flex;
@@ -76,14 +76,14 @@
   .nav-seal {
     width: 28px;
     height: 28px;
-    border: 0.5px solid var(--page-darker);
+    border: 0.5px solid rgba(255,255,255,0.25);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'IM Fell English', serif;
     font-size: 13px;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.6);
     flex-shrink: 0;
   }
 
@@ -91,22 +91,19 @@
     font-family: 'IM Fell English', serif;
     font-size: 15px;
     font-style: italic;
-    color: var(--ink-mid);
+    color: rgba(255,255,255,0.75);
     letter-spacing: 0.06em;
   }
 
-  .nav-tabs {
-    display: flex;
-    gap: 0;
-  }
+  .nav-tabs { display: flex; }
 
   .nav-tab {
     font-family: 'Nunito', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
     padding: 0 1rem;
     height: 56px;
@@ -116,8 +113,8 @@
     transition: color 0.2s, border-color 0.2s;
     white-space: nowrap;
   }
-  .nav-tab:hover { color: var(--ink); }
-  .nav-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .nav-tab:hover { color: rgba(255,255,255,0.85); }
+  .nav-tab.active { color: #fff; border-bottom-color: var(--scarlet-light); }
 
   /* LAYOUT */
   .layout {
@@ -144,22 +141,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     padding-bottom: 1.5rem;
     border-bottom: 0.5px solid var(--page-darker);
   }
 
   .sidebar-seal-big {
-    width: 56px;
-    height: 56px;
-    border: 0.5px solid var(--page-darker);
+    width: 54px;
+    height: 54px;
+    border: 1px solid var(--page-darker);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'IM Fell English', serif;
     font-size: 22px;
-    color: var(--ink-soft);
+    color: var(--scarlet);
   }
 
   .sidebar-seal-name {
@@ -172,42 +169,45 @@
   }
 
   .sidebar-seal-sub {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--ink-faint);
+    color: var(--scarlet);
     text-align: center;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
   }
 
   .sidebar-section-label {
     font-size: 10px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    font-family: 'Cormorant Garamond', serif;
-    margin-bottom: 0.75rem;
+    color: var(--scarlet);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
   }
 
   .sidebar-nav-link {
     display: block;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--ink-soft);
     text-decoration: none;
-    padding: 0.4rem 0;
+    padding: 0.45rem 0;
     border-bottom: 0.5px solid var(--page-dark);
     transition: color 0.2s;
-    letter-spacing: 0.02em;
   }
   .sidebar-nav-link:last-child { border-bottom: none; }
   .sidebar-nav-link:hover { color: var(--ink); }
-  .sidebar-nav-link.active { color: var(--ink); font-style: italic; }
+  .sidebar-nav-link.active { color: var(--scarlet); font-style: italic; }
+
+  .sidebar-divider { height: 0.5px; background: var(--page-darker); }
 
   .sidebar-stat {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     padding: 0.35rem 0;
     border-bottom: 0.5px solid var(--page-dark);
   }
@@ -218,88 +218,101 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-faint);
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
   }
 
   .sidebar-stat-val {
     font-family: 'IM Fell English', serif;
-    font-size: 14px;
+    font-size: 15px;
     font-style: italic;
     color: var(--ink-mid);
+  }
+
+  .sidebar-notice {
+    background: var(--scarlet-pale);
+    border: 0.5px solid #D4A0A0;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--scarlet);
+    line-height: 1.6;
   }
 
   .sidebar-footer {
     margin-top: auto;
     font-family: 'IM Fell English', serif;
-    font-size: 16px;
+    font-size: 15px;
     font-style: italic;
     color: var(--ink-faint);
     text-align: center;
-    opacity: 0.5;
+    opacity: 0.45;
     letter-spacing: 0.08em;
   }
 
-  /* MAIN CONTENT */
-  .main {
-    padding: 2.5rem 2.5rem 4rem;
-    max-width: 860px;
-  }
+  /* MAIN */
+  .main { padding: 3rem 3rem 5rem; max-width: 860px; }
 
   .main-eyebrow {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    font-family: 'Cormorant Garamond', serif;
+    color: var(--scarlet);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     margin-bottom: 0.5rem;
   }
 
   .main-title {
     font-family: 'IM Fell English', serif;
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(32px, 4vw, 46px);
     font-weight: 400;
     color: var(--ink);
     margin-bottom: 0.25rem;
-    line-height: 1.15;
+    line-height: 1.1;
   }
 
   .main-subtitle {
     font-family: 'IM Fell English', serif;
-    font-size: 13px;
+    font-size: 14px;
     font-style: italic;
     color: var(--ink-soft);
     letter-spacing: 0.06em;
     margin-bottom: 1.75rem;
   }
 
-  /* PUBLIC ACCESS NOTICE */
+  /* NOTICE */
   .notice {
     background: var(--white);
     border: 0.5px solid var(--page-darker);
-    border-left: 2px solid var(--ink-soft);
+    border-left: 2px solid var(--scarlet);
     border-radius: 0 8px 8px 0;
     padding: 1.1rem 1.25rem;
     margin-bottom: 2rem;
+    max-width: 680px;
   }
 
   .notice-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    font-family: 'Cormorant Garamond', serif;
+    color: var(--scarlet);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     margin-bottom: 0.4rem;
   }
 
   .notice-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
+    font-size: 16px;
     font-style: italic;
     color: var(--ink-mid);
     line-height: 1.75;
   }
 
-  /* DIVIDER */
+  /* SECTION DIVIDER */
   .section-divider {
     display: flex;
     align-items: center;
@@ -310,15 +323,16 @@
   .section-divider-line { flex: 1; height: 0.5px; background: var(--page-darker); }
 
   .section-divider-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink-soft);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     white-space: nowrap;
   }
 
-  /* CASE CARD */
+  /* PUBLIC CASE CARD */
   .case-card {
     background: var(--white);
     border: 0.5px solid var(--page-darker);
@@ -329,41 +343,37 @@
     grid-template-columns: 1fr auto;
     gap: 1rem;
     align-items: center;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
     text-decoration: none;
     color: inherit;
   }
-  .case-card:hover { border-color: var(--ink-soft); }
+  .case-card:hover {
+    border-color: var(--ink-soft);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
 
   .case-card-id {
     font-family: 'IM Fell English', serif;
-    font-size: 12px;
+    font-size: 13px;
     font-style: italic;
-    color: var(--ink-faint);
+    color: var(--ink-soft);
     letter-spacing: 0.08em;
     margin-bottom: 0.3rem;
   }
 
   .case-card-title {
     font-family: 'IM Fell English', serif;
-    font-size: 20px;
+    font-size: 22px;
     color: var(--ink);
     margin-bottom: 0.4rem;
     line-height: 1.2;
   }
 
   .case-card-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .case-card-year {
-    font-size: 12px;
-    color: var(--ink-faint);
+    font-size: 13px;
+    color: var(--ink-soft);
     font-family: 'Cormorant Garamond', serif;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
   }
 
   .case-card-right {
@@ -373,12 +383,14 @@
     gap: 0.75rem;
   }
 
+  /* STATUS BADGES */
   .status-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 11px;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 4px 10px;
@@ -394,17 +406,17 @@
     flex-shrink: 0;
   }
 
-  .badge-active    { background: #EDF4F0; border-color: #A8C8B4; color: #3A6B4A; }
-  .badge-dormant   { background: #F2F2EC; border-color: #C4C4A8; color: #5A5A40; }
-  .badge-closed    { background: #F0EFED; border-color: #C4C2BE; color: #606060; }
-  .badge-unresolved{ background: #F4F0EA; border-color: #C8B898; color: #6B5030; }
-  .badge-missing   { background: #F4EDED; border-color: #C8A8A8; color: #7A3030; }
+  .badge-active     { background: #EDF4F0; border-color: #A8C8B4; color: #2A5A3A; }
+  .badge-dormant    { background: #F2F2EC; border-color: #C4C4A8; color: #4A4A30; }
+  .badge-closed     { background: #F0EFED; border-color: #C4C2BE; color: #484848; }
+  .badge-unresolved { background: #F4F0EA; border-color: #C8B898; color: #5A3A18; }
+  .badge-missing    { background: var(--scarlet-pale); border-color: #D4A0A0; color: var(--scarlet); }
 
-  .dot-active-sm    { background: #4A7C59; }
-  .dot-dormant-sm   { background: #7A7A5A; }
-  .dot-closed-sm    { background: #888780; }
-  .dot-unresolved-sm{ background: #8B6A3A; }
-  .dot-missing-sm   { background: var(--red-mute); }
+  .dot-active-sm     { background: #4A7C59; }
+  .dot-dormant-sm    { background: #7A7A5A; }
+  .dot-closed-sm     { background: #888780; }
+  .dot-unresolved-sm { background: #8B6A3A; }
+  .dot-missing-sm    { background: var(--scarlet); }
 
   .view-btn {
     font-family: 'Nunito', sans-serif;
@@ -416,14 +428,14 @@
     background: var(--page);
     border: 0.5px solid var(--page-darker);
     border-radius: 6px;
-    padding: 5px 12px;
+    padding: 5px 14px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     white-space: nowrap;
   }
   .view-btn:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
-  /* RESTRICTED CARDS */
+  /* RESTRICTED CARD — ID visible, content redacted with bars */
   .case-card-restricted {
     background: var(--white);
     border: 0.5px solid var(--page-darker);
@@ -434,43 +446,56 @@
     grid-template-columns: 1fr auto;
     gap: 1rem;
     align-items: center;
-    opacity: 0.65;
   }
 
   .case-card-restricted-id {
     font-family: 'IM Fell English', serif;
-    font-size: 12px;
+    font-size: 13px;
     font-style: italic;
-    color: var(--ink-faint);
+    color: var(--ink-soft);
     letter-spacing: 0.08em;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .redacted-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.35rem;
   }
 
   .redacted-bar {
-    height: 18px;
+    height: 14px;
     background: var(--ink);
-    border-radius: 3px;
-    margin-bottom: 0.4rem;
+    border-radius: 2px;
+    display: inline-block;
   }
 
-  .redacted-bar-sm {
-    height: 12px;
-    background: var(--page-darker);
-    border-radius: 3px;
+  .redacted-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--ink-faint);
+    font-style: italic;
   }
 
-  .restricted-label {
+  .restricted-tag {
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink-soft);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    background: var(--page);
+    border: 0.5px solid var(--page-darker);
+    padding: 3px 9px;
+    border-radius: 99px;
+    white-space: nowrap;
   }
 
-  /* FULLY BLACKED OUT */
+  /* FULLY REDACTED CARD — no ID, heavy redaction */
   .case-card-blacked {
-    background: var(--ink);
-    border: 0.5px solid var(--ink);
+    background: var(--white);
+    border: 0.5px solid var(--page-darker);
     border-radius: 10px;
     padding: 1.25rem 1.5rem;
     margin-bottom: 1rem;
@@ -478,28 +503,57 @@
     grid-template-columns: 1fr auto;
     gap: 1rem;
     align-items: center;
+    opacity: 0.75;
   }
 
-  .blacked-bar {
+  .redacted-id-bar {
+    height: 13px;
+    width: 140px;
+    background: var(--ink);
+    border-radius: 2px;
+    margin-bottom: 0.6rem;
+  }
+
+  .redacted-title-bar {
+    height: 18px;
+    background: var(--ink);
+    border-radius: 2px;
+    margin-bottom: 0.4rem;
+  }
+
+  .redacted-meta-bar {
     height: 12px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 3px;
-    margin-bottom: 0.5rem;
+    background: var(--page-darker);
+    border-radius: 2px;
   }
 
-  .blacked-bar-wide { width: 60%; }
-  .blacked-bar-mid  { width: 40%; }
-  .blacked-bar-sm   { width: 25%; }
+  .fully-restricted-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
 
-  .blacked-badge {
+  .fully-restricted-tag {
     font-size: 10px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.15);
-    font-family: 'Cormorant Garamond', serif;
-    padding: 4px 10px;
-    border: 0.5px solid rgba(255,255,255,0.1);
+    color: var(--scarlet);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    background: var(--scarlet-pale);
+    border: 0.5px solid #D4A0A0;
+    padding: 3px 9px;
     border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  .fully-restricted-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-faint);
+    text-align: right;
   }
 
   /* FOOTER NOTE */
@@ -513,9 +567,9 @@
   }
 
   .footer-note-text {
-    font-size: 12px;
+    font-size: 13px;
     font-style: italic;
-    color: var(--ink-faint);
+    color: var(--ink-soft);
     line-height: 1.7;
     font-family: 'Cormorant Garamond', serif;
   }
@@ -534,10 +588,11 @@
     .main { padding: 2rem 1.25rem 3rem; }
     nav { padding: 0 1rem; }
     .nav-title { display: none; }
-    .case-card { grid-template-columns: 1fr; }
-    .case-card-right { flex-direction: row; align-items: center; justify-content: space-between; }
-    .case-card-restricted { grid-template-columns: 1fr; }
+    .case-card,
+    .case-card-restricted,
     .case-card-blacked { grid-template-columns: 1fr; }
+    .case-card-right,
+    .fully-restricted-label { flex-direction: row; align-items: center; justify-content: space-between; }
   }
 </style>
 </head>
@@ -573,6 +628,8 @@
       <a href="cases.html" class="sidebar-nav-link active">Cases</a>
     </div>
 
+    <div class="sidebar-divider"></div>
+
     <div>
       <div class="sidebar-section-label">Index stats</div>
       <div class="sidebar-stat">
@@ -593,6 +650,10 @@
       </div>
     </div>
 
+    <div class="sidebar-notice">
+      Access to restricted records is not granted upon request.
+    </div>
+
     <div class="sidebar-footer">παράδοξα</div>
   </aside>
 
@@ -610,7 +671,7 @@
       </div>
     </div>
 
-    <!-- PUBLIC CASES -->
+    <!-- PUBLIC -->
     <div class="section-divider">
       <div class="section-divider-line"></div>
       <div class="section-divider-label">Public records</div>
@@ -618,12 +679,10 @@
     </div>
 
     <a href="#" class="case-card">
-      <div class="case-card-left">
+      <div>
         <div class="case-card-id">PC · 1830 · ENT · 167</div>
         <div class="case-card-title">The Proprietor</div>
-        <div class="case-card-meta">
-          <div class="case-card-year">Active since 1830 &nbsp;·&nbsp; Entity</div>
-        </div>
+        <div class="case-card-meta">Active since 1830 &nbsp;·&nbsp; Entity</div>
       </div>
       <div class="case-card-right">
         <div class="status-badge badge-active">
@@ -634,82 +693,103 @@
       </div>
     </a>
 
-    <!-- RESTRICTED SECTION -->
+    <!-- RESTRICTED -->
     <div class="section-divider">
       <div class="section-divider-line"></div>
       <div class="section-divider-label">Restricted records</div>
       <div class="section-divider-line"></div>
     </div>
 
-    <!-- Restricted: ID visible, title redacted -->
+    <!-- ID visible, content redacted -->
     <div class="case-card-restricted">
       <div>
         <div class="case-card-restricted-id">PC · 1743 · ENT · 088</div>
-        <div class="redacted-bar" style="width: 55%;"></div>
-        <div class="redacted-bar-sm" style="width: 35%; margin-top: 6px;"></div>
+        <div class="redacted-line">
+          <div class="redacted-bar" style="width: 160px;"></div>
+          <span class="redacted-text">title restricted</span>
+        </div>
+        <div class="redacted-line">
+          <div class="redacted-bar" style="width: 90px; height: 11px; background: var(--page-darker);"></div>
+          <span class="redacted-text">details withheld</span>
+        </div>
       </div>
-      <div style="text-align: right;">
-        <div class="restricted-label">Restricted</div>
+      <div>
+        <div class="restricted-tag">Restricted</div>
       </div>
     </div>
 
-    <!-- Restricted: ID visible, title redacted -->
+    <!-- ID visible, content redacted -->
     <div class="case-card-restricted">
       <div>
         <div class="case-card-restricted-id">PC · 1651 · PHN · 042</div>
-        <div class="redacted-bar" style="width: 70%;"></div>
-        <div class="redacted-bar-sm" style="width: 45%; margin-top: 6px;"></div>
+        <div class="redacted-line">
+          <div class="redacted-bar" style="width: 200px;"></div>
+          <span class="redacted-text">title restricted</span>
+        </div>
+        <div class="redacted-line">
+          <div class="redacted-bar" style="width: 110px; height: 11px; background: var(--page-darker);"></div>
+          <span class="redacted-text">details withheld</span>
+        </div>
       </div>
-      <div style="text-align: right;">
-        <div class="restricted-label">Restricted</div>
+      <div>
+        <div class="restricted-tag">Restricted</div>
       </div>
     </div>
 
-    <!-- Fully blacked out -->
+    <!-- Fully redacted — no ID -->
     <div class="case-card-blacked">
       <div>
-        <div class="blacked-bar blacked-bar-mid"></div>
-        <div class="blacked-bar blacked-bar-wide"></div>
-        <div class="blacked-bar blacked-bar-sm" style="margin-top: 6px;"></div>
+        <div class="redacted-id-bar"></div>
+        <div class="redacted-title-bar" style="width: 55%;"></div>
+        <div class="redacted-meta-bar" style="width: 38%; margin-top: 6px;"></div>
       </div>
-      <div>
-        <div class="blacked-badge">Restricted</div>
+      <div class="fully-restricted-label">
+        <div class="fully-restricted-tag">Classified</div>
+        <div class="fully-restricted-note">Access denied</div>
       </div>
     </div>
 
-    <!-- Fully blacked out -->
+    <!-- Fully redacted — no ID -->
     <div class="case-card-blacked">
       <div>
-        <div class="blacked-bar blacked-bar-sm"></div>
-        <div class="blacked-bar blacked-bar-wide"></div>
-        <div class="blacked-bar blacked-bar-mid" style="margin-top: 6px;"></div>
+        <div class="redacted-id-bar"></div>
+        <div class="redacted-title-bar" style="width: 70%;"></div>
+        <div class="redacted-meta-bar" style="width: 45%; margin-top: 6px;"></div>
       </div>
-      <div>
-        <div class="blacked-badge">Restricted</div>
+      <div class="fully-restricted-label">
+        <div class="fully-restricted-tag">Classified</div>
+        <div class="fully-restricted-note">Access denied</div>
       </div>
     </div>
 
-    <!-- Restricted: ID visible -->
+    <!-- ID visible, content redacted -->
     <div class="case-card-restricted">
       <div>
         <div class="case-card-restricted-id">PC · 1412 · ENT · 011</div>
-        <div class="redacted-bar" style="width: 45%;"></div>
-        <div class="redacted-bar-sm" style="width: 30%; margin-top: 6px;"></div>
+        <div class="redacted-line">
+          <div class="redacted-bar" style="width: 130px;"></div>
+          <span class="redacted-text">title restricted</span>
+        </div>
+        <div class="redacted-line">
+          <div class="redacted-bar" style="width: 80px; height: 11px; background: var(--page-darker);"></div>
+          <span class="redacted-text">details withheld</span>
+        </div>
       </div>
-      <div style="text-align: right;">
-        <div class="restricted-label">Restricted</div>
+      <div>
+        <div class="restricted-tag">Restricted</div>
       </div>
     </div>
 
-    <!-- Fully blacked out -->
+    <!-- Fully redacted — no ID -->
     <div class="case-card-blacked">
       <div>
-        <div class="blacked-bar blacked-bar-wide"></div>
-        <div class="blacked-bar blacked-bar-mid"></div>
-        <div class="blacked-bar blacked-bar-sm" style="margin-top: 6px;"></div>
+        <div class="redacted-id-bar"></div>
+        <div class="redacted-title-bar" style="width: 48%;"></div>
+        <div class="redacted-meta-bar" style="width: 30%; margin-top: 6px;"></div>
       </div>
-      <div>
-        <div class="blacked-badge">Restricted</div>
+      <div class="fully-restricted-label">
+        <div class="fully-restricted-tag">Classified</div>
+        <div class="fully-restricted-note">Access denied</div>
       </div>
     </div>
 
