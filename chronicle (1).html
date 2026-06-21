@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paradoxa Chronicle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1A1A18;
+    --ink-mid: #3A3835;
+    --ink-soft: #5A5855;
+    --ink-faint: #7A7870;
+    --page: #F0EBE1;
+    --page-dark: #E4DDD1;
+    --page-darker: #CEC8BE;
+    --white: #FDFAF6;
+    --scarlet: #8B1A1A;
+    --scarlet-light: #B52020;
+    --scarlet-pale: #F5EAEA;
+    --red-mute: #8B3A3A;
+    --sidebar-w: 240px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    gap: 1rem;
+  }
+
+  .nav-back {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-back:hover { color: rgba(255,255,255,0.9); }
+  .nav-back::before { content: '←'; font-size: 13px; }
+
+  .nav-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-seal {
+    width: 28px;
+    height: 28px;
+    border: 0.5px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+  }
+
+  .nav-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.06em;
+  }
+
+  .nav-tabs { display: flex; }
+
+  .nav-tab {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-tab:hover { color: rgba(255,255,255,0.85); }
+  .nav-tab.active { color: #fff; border-bottom-color: var(--scarlet-light); }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    min-height: calc(100vh - 56px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    border-right: 0.5px solid var(--page-darker);
+    padding: 2rem 1.5rem;
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sidebar-seal-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--page-darker);
+  }
+
+  .sidebar-seal-big {
+    width: 54px;
+    height: 54px;
+    border: 1px solid var(--page-darker);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 22px;
+    color: var(--scarlet);
+  }
+
+  .sidebar-seal-name {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-mid);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .sidebar-seal-greek {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  .sidebar-section-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--scarlet);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .sidebar-nav-link {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0.45rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .sidebar-nav-link:last-child { border-bottom: none; }
+  .sidebar-nav-link:hover { color: var(--ink); }
+  .sidebar-nav-link.active { color: var(--scarlet); font-style: italic; }
+
+  .sidebar-divider {
+    height: 0.5px;
+    background: var(--page-darker);
+  }
+
+  .sidebar-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.35rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+  }
+  .sidebar-meta-row:last-child { border-bottom: none; }
+
+  .sidebar-meta-key {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+  }
+
+  .sidebar-meta-val {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-mid);
+  }
+
+  .sidebar-notice {
+    background: var(--scarlet-pale);
+    border: 0.5px solid #D4A0A0;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--scarlet);
+    line-height: 1.6;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-faint);
+    text-align: center;
+    opacity: 0.45;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 3rem 3rem 5rem;
+  }
+
+  /* ── PAGE SWITCHING ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── RULE ── */
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .rule-line { flex: 1; height: 0.5px; background: var(--page-darker); }
+
+  .rule-seal {
+    width: 36px;
+    height: 36px;
+    border: 0.5px solid var(--page-darker);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    color: var(--scarlet);
+    flex-shrink: 0;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .eyebrow {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--scarlet);
+    margin-bottom: 0.6rem;
+  }
+
+  .page-title {
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(38px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .page-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    margin-bottom: 2rem;
+  }
+
+  .divider-short {
+    width: 48px;
+    height: 1px;
+    background: var(--scarlet);
+    margin-bottom: 2rem;
+    opacity: 0.4;
+  }
+
+  .statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    border-left: 2px solid var(--scarlet);
+    padding-left: 1.25rem;
+  }
+
+  .body-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--ink-mid);
+    margin-bottom: 1.5rem;
+    max-width: 680px;
+  }
+
+  /* ── PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--page-darker);
+    border: 0.5px solid var(--page-darker);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2rem 0;
+    max-width: 680px;
+  }
+
+  .pillar { background: var(--white); padding: 1.25rem 1.1rem; }
+
+  .pillar-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--scarlet);
+    margin-bottom: 0.4rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+  }
+
+  .pillar-text {
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    border-left: 2px solid var(--page-darker);
+    padding-left: 1.25rem;
+    margin: 2rem 0;
+    max-width: 600px;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  .quote-attr {
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-top: 0.5rem;
+    letter-spacing: 0.06em;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── PAGE FOOTER ── */
+  .page-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--page-darker);
+    max-width: 680px;
+  }
+
+  .page-footer-left {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    line-height: 1.7;
+  }
+
+  .page-footer-greek {
+    font-family: 'IM Fell English', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ARCH BLOCKS ── */
+  .arch-block {
+    border: 0.5px solid var(--page-darker);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background: var(--white);
+    max-width: 780px;
+  }
+
+  .arch-block-head {
+    background: var(--ink);
+    padding: 0.65rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .arch-block-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+  }
+
+  .arch-block-tag {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    font-style: italic;
+    color: rgba(255,255,255,0.4);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .arch-block-body { padding: 1.25rem; }
+
+  .arch-field {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 10px;
+    padding: 0.75rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+    align-items: start;
+  }
+  .arch-field:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .arch-field-key {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 3px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+  }
+
+  .arch-field-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  .arch-field-note {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 5px;
+    line-height: 1.6;
+  }
+
+  /* ── ID BREAKDOWN ── */
+  .id-example {
+    font-family: 'IM Fell English', serif;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    margin: 0.75rem 0 0.6rem;
+  }
+
+  .id-breakdown { display: flex; }
+
+  .id-seg {
+    text-align: center;
+    padding: 0.5rem 0.85rem;
+    border: 0.5px solid var(--page-darker);
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+  }
+  .id-seg:first-child { border-radius: 8px 0 0 8px; }
+  .id-seg:last-child  { border-radius: 0 8px 8px 0; }
+  .id-seg + .id-seg   { border-left: none; }
+  .id-seg span {
+    display: block;
+    font-size: 15px;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  /* ── STATUS GRID ── */
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    background: var(--page-darker);
+  }
+
+  .status-item { background: var(--white); padding: 1.1rem; }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+  }
+
+  .dot-active     { background: #4A7C59; }
+  .dot-dormant    { background: #7A7A5A; }
+  .dot-closed     { background: #888780; }
+  .dot-unresolved { background: #8B6A3A; }
+  .dot-missing    { background: var(--scarlet); }
+
+  .status-name {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .status-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── CLASS GRID ── */
+  .class-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--page-darker);
+  }
+
+  .class-item { background: var(--white); padding: 1.1rem; }
+
+  .class-name {
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .class-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── DANGER GRID ── */
+  .danger-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--page-darker);
+  }
+
+  .danger-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    background: var(--white);
+  }
+
+  .danger-level {
+    padding: 0.9rem 1rem;
+    border-right: 0.5px solid var(--page-darker);
+    display: flex;
+    align-items: center;
+  }
+
+  .danger-name {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .danger-desc {
+    padding: 0.9rem 1.1rem;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── TEAM ROWS ── */
+  .team-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 0.8rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+  }
+  .team-row:last-child { border-bottom: none; }
+
+  .team-pill {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--scarlet-pale);
+    border: 0.5px solid #D4A0A0;
+    color: var(--scarlet);
+    white-space: nowrap;
+    margin-top: 2px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+  }
+
+  .team-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── COMMENTARY ── */
+  .commentary {
+    background: var(--page);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-top: 0.75rem;
+    border: 0.5px solid var(--page-darker);
+  }
+
+  .comment {
+    padding: 0.65rem 0;
+    border-bottom: 0.5px solid var(--page-darker);
+  }
+  .comment:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .comment-meta {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 0.3rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+  }
+
+  .comment-text {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.65;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── BADGES ── */
+  .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+
+  .badge {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 0.5px solid var(--page-darker);
+    color: var(--ink-mid);
+    background: var(--page);
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+  }
+
+  .badge-note {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-faint);
+    margin-top: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .note-small {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-family: 'Cormorant Garamond', serif;
+    margin-bottom: 1rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: 2rem 1.25rem 3rem; }
+    nav { padding: 0 1rem; }
+    .nav-title { display: none; }
+    .pillars { grid-template-columns: 1fr; }
+    .class-grid { grid-template-columns: 1fr; }
+    .danger-row { grid-template-columns: 1fr; }
+    .danger-level { border-right: none; border-bottom: 0.5px solid var(--page-darker); }
+    .arch-field { grid-template-columns: 1fr; }
+    .id-breakdown { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-back">Blue Tail Studio</a>
+  <div class="nav-center">
+    <div class="nav-seal">Π</div>
+    <div class="nav-title">Paradoxa Chronicle</div>
+  </div>
+  <div class="nav-tabs">
+    <a href="#" class="nav-tab active" onclick="showPage('landing', this); return false;">Archive</a>
+    <a href="#" class="nav-tab" onclick="showPage('system', this); return false;">How We Record</a>
+    <a href="cases.html" class="nav-tab">Cases</a>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-seal-wrap">
+      <div class="sidebar-seal-big">Π</div>
+      <div class="sidebar-seal-name">Paradoxa<br>Chronicle</div>
+      <div class="sidebar-seal-greek">παράδοξα χρονικόν</div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-label">Navigate</div>
+      <a href="#" class="sidebar-nav-link active" id="link-landing" onclick="showPage('landing', document.querySelector('.nav-tab')); updateSidebarLinks('landing'); return false;">Archive</a>
+      <a href="#" class="sidebar-nav-link" id="link-system" onclick="showPage('system', document.querySelectorAll('.nav-tab')[1]); updateSidebarLinks('system'); return false;">How We Record</a>
+      <a href="cases.html" class="sidebar-nav-link">Cases</a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div>
+      <div class="sidebar-section-label">About the Archive</div>
+      <div class="sidebar-meta-row">
+        <div class="sidebar-meta-key">Founded</div>
+        <div class="sidebar-meta-val">Unknown</div>
+      </div>
+      <div class="sidebar-meta-row">
+        <div class="sidebar-meta-key">Languages</div>
+        <div class="sidebar-meta-val">Hebrew, Greek +</div>
+      </div>
+      <div class="sidebar-meta-row">
+        <div class="sidebar-meta-key">Affiliation</div>
+        <div class="sidebar-meta-val">None</div>
+      </div>
+      <div class="sidebar-meta-row">
+        <div class="sidebar-meta-key">Record</div>
+        <div class="sidebar-meta-val">Continuous</div>
+      </div>
+    </div>
+
+    <div class="sidebar-notice">
+      Members are identified by staff number only. Names are not recorded in case files.
+    </div>
+
+    <div class="sidebar-footer">παράδοξα</div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- PAGE 1: LANDING -->
+    <div class="page active" id="page-landing">
+
+      <div class="rule">
+        <div class="rule-line"></div>
+        <div class="rule-seal">Π</div>
+        <div class="rule-line"></div>
+      </div>
+
+      <div class="eyebrow">Est. in perpetuity &nbsp;·&nbsp; Paradoxa Chronicle</div>
+      <h1 class="page-title">Paradoxa<br>Chronicle</h1>
+      <div class="page-subtitle">παράδοξα χρονικόν &nbsp;·&nbsp; Things Beyond Expectation, Recorded</div>
+
+      <div class="divider-short"></div>
+
+      <p class="statement">
+        We do not pursue. We do not contain.<br>
+        We bear witness, and we write it down.
+      </p>
+
+      <p class="body-text">
+        The Paradoxa Chronicle is a record-keeping body of historians, philosophers, and theologians united by a single conviction: that the world contains events which no single tradition — scientific, religious, or otherwise — has been sufficient to explain. Our purpose is not to explain them. Our purpose is to ensure they are never forgotten, and never falsified.
+      </p>
+
+      <p class="body-text">
+        Our records stretch across centuries and languages. What was called a miracle in a 12th century monastery appears again in a police report filed in 1931, and again in a witness account from 1955. We hold all three. We draw no conclusion between them. The Chronicle exists precisely because conclusions have, historically, been the first thing to disappear.
+      </p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-label">First tradition</div>
+          <div class="pillar-text">Faith &amp; scripture</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">Second tradition</div>
+          <div class="pillar-text">Philosophy &amp; reason</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label">Third tradition</div>
+          <div class="pillar-text">History &amp; testimony</div>
+        </div>
+      </div>
+
+      <p class="body-text">
+        We are not affiliated with any government, institution, or church — though members of each have contributed to our records. We do not act. We do not intervene. When something that should not exist leaves evidence that it does, we collect that evidence, cross-reference it against everything that came before, and add it to the Archive.
+      </p>
+
+      <div class="quote-block">
+        <div class="quote-text">
+          "The oldest records in the Archive are written in Hebrew. When the philosophers arrived, they translated what they could into Greek. There are entries that could not be translated. Those remain as they were."
+        </div>
+        <div class="quote-attr">— Archivist's preface, undated</div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-left">
+          Paradoxa Chronicle Archive<br>
+          Continuous record. No terminus.
+        </div>
+        <div class="page-footer-greek">παράδοξα</div>
+      </div>
+
+    </div>
+
+    <!-- PAGE 2: HOW WE RECORD -->
+    <div class="page" id="page-system">
+
+      <div class="rule">
+        <div class="rule-line"></div>
+        <div class="rule-seal">Π</div>
+        <div class="rule-line"></div>
+      </div>
+
+      <div class="eyebrow">Archive system &nbsp;·&nbsp; Paradoxa Chronicle</div>
+      <h1 class="page-title">How We Record</h1>
+      <div class="page-subtitle">Every case entered into the Archive follows a fixed structure.</div>
+
+      <div class="divider-short"></div>
+
+      <!-- 01 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">01 &nbsp;·&nbsp; Case identification</div>
+        </div>
+        <div class="arch-block-body">
+          <div class="arch-field" style="border-bottom:none; padding-bottom:0.75rem;">
+            <div class="arch-field-key">Format</div>
+            <div class="arch-field-val">
+              <div class="id-example">PC · 1955 · ENT · 001</div>
+              <div class="id-breakdown">
+                <div class="id-seg"><span>PC</span>Chronicle prefix</div>
+                <div class="id-seg"><span>1955</span>Year recorded</div>
+                <div class="id-seg"><span>ENT</span>Classification</div>
+                <div class="id-seg"><span>001</span>Sequence</div>
+              </div>
+              <div class="arch-field-note" style="margin-top:8px;">Older entries carry handwritten registry numbers retroactively assigned to this format. Where the original date is unknown, the year of first cross-reference is used.</div>
+            </div>
+          </div>
+          <div class="arch-field">
+            <div class="arch-field-key">Staff number</div>
+            <div class="arch-field-val">
+              Each member is assigned a permanent staff number upon induction. All entries, updates, and commentary are attributed to a number, not a name.
+              <div class="arch-field-note">Names are held separately in the membership record and are not published in case files.</div>
+            </div>
+          </div>
+          <div class="arch-field">
+            <div class="arch-field-key">Date recorded</div>
+            <div class="arch-field-val">
+              The date the entry was first committed to the Archive. Separate from the date of the event itself, which is logged in the operational record.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">02 &nbsp;·&nbsp; Case status</div>
+        </div>
+        <div class="status-grid">
+          <div class="status-item">
+            <div class="status-dot dot-active"></div>
+            <div class="status-name">Active</div>
+            <div class="status-desc">Ongoing. The subject is present, occurring, or continues to be encountered.</div>
+          </div>
+          <div class="status-item">
+            <div class="status-dot dot-dormant"></div>
+            <div class="status-name">Dormant</div>
+            <div class="status-desc">Not currently active, but not gone. Previous activity on record.</div>
+          </div>
+          <div class="status-item">
+            <div class="status-dot dot-closed"></div>
+            <div class="status-name">Closed</div>
+            <div class="status-desc">Interaction concluded. Outcome fully documented.</div>
+          </div>
+          <div class="status-item">
+            <div class="status-dot dot-unresolved"></div>
+            <div class="status-name">Unresolved</div>
+            <div class="status-desc">Interaction occurred. No conclusions could be drawn.</div>
+          </div>
+          <div class="status-item">
+            <div class="status-dot dot-missing"></div>
+            <div class="status-name">Missing</div>
+            <div class="status-desc">The subject can no longer be located. Last known record noted in file.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">03 &nbsp;·&nbsp; Classification</div>
+          <div class="arch-block-tag">What kind of thing is this</div>
+        </div>
+        <div class="class-grid">
+          <div class="class-item">
+            <div class="class-name">Entity</div>
+            <div class="class-desc">Something that exists, acts, and can be engaged with directly. May be human in appearance or origin.</div>
+          </div>
+          <div class="class-item">
+            <div class="class-name">Phenomenon</div>
+            <div class="class-desc">An event, condition, or occurrence. Includes diseases, spatial anomalies, and temporal disturbances.</div>
+          </div>
+          <div class="class-item">
+            <div class="class-name">Residual</div>
+            <div class="class-desc">Something left behind. An effect without a clearly present cause.</div>
+          </div>
+          <div class="class-item">
+            <div class="class-name">Theological</div>
+            <div class="class-desc">Maps to religious record across two or more independent traditions. Assigned alongside another class, not instead of it.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">04 &nbsp;·&nbsp; Danger rate</div>
+          <div class="arch-block-tag">Member safety priority</div>
+        </div>
+        <div class="danger-grid">
+          <div class="danger-row">
+            <div class="danger-level"><div class="danger-name">Passive</div></div>
+            <div class="danger-desc">No recorded aggression toward Chronicle members. Standard protocols apply.</div>
+          </div>
+          <div class="danger-row">
+            <div class="danger-level"><div class="danger-name">Contingent</div></div>
+            <div class="danger-desc">Dangerous only under specific, documented conditions. Caution notes are mandatory for this rating and above.</div>
+          </div>
+          <div class="danger-row">
+            <div class="danger-level"><div class="danger-name">Active</div></div>
+            <div class="danger-desc">Will engage with members present. Mixed team deployment required. Exit strategy must be established before approach.</div>
+          </div>
+          <div class="danger-row">
+            <div class="danger-level"><div class="danger-name">Absolute</div></div>
+            <div class="danger-desc">Contact has not produced survivors. Entry compiled from recovered materials and third-party accounts only.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">05 &nbsp;·&nbsp; Assigned team</div>
+          <div class="arch-block-tag">Who engages and why</div>
+        </div>
+        <div class="arch-block-body">
+          <div class="team-row">
+            <div class="team-pill">Religious</div>
+            <div class="team-desc">Deployed when the subject maps to scripture, ritual, or theological record. Includes cross-traditional comparison where applicable.</div>
+          </div>
+          <div class="team-row">
+            <div class="team-pill">Historical</div>
+            <div class="team-desc">Deployed when the subject has a documented record across time. Responsible for cross-referencing prior entries and establishing timeline.</div>
+          </div>
+          <div class="team-row">
+            <div class="team-pill">Philosophical</div>
+            <div class="team-desc">Deployed when the subject resists classification by existing frameworks. Responsible for first-contact questioning and behavioral documentation.</div>
+          </div>
+          <div class="team-row">
+            <div class="team-pill">Mixed</div>
+            <div class="team-desc">Two or more departments assigned. The rationale for the combination is recorded in the team field. Common for Entity and Theological class cases.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">06 &nbsp;·&nbsp; Caution notes</div>
+        </div>
+        <div class="arch-block-body">
+          <div class="arch-field" style="border-bottom:none;">
+            <div class="arch-field-key">Purpose</div>
+            <div class="arch-field-val">
+              Everything a member needs to know before engagement. Behavioral patterns, environmental conditions, known triggers, and any factors that have previously affected member safety. Mandatory for Contingent rating and above.
+              <div class="arch-field-note">Caution notes are updated after every field interaction. Outdated notes are archived, not deleted.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">07 &nbsp;·&nbsp; Operational record</div>
+        </div>
+        <div class="arch-block-body">
+          <div class="arch-field" style="border-bottom:none;">
+            <div class="arch-field-key">Purpose</div>
+            <div class="arch-field-val">
+              A firsthand account of what the assigned team did, what they encountered, and what the outcome was. Written by the recording staff member upon return. Includes who was present, what was observed, and the condition of the team at conclusion.
+              <div class="arch-field-note">Where members did not return, the operational record is left incomplete and marked accordingly. It is never fabricated.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">08 &nbsp;·&nbsp; Staff commentary</div>
+        </div>
+        <div class="arch-block-body" style="padding-bottom:0.75rem;">
+          <div class="note-small">Any member with Archive access may leave commentary on an open case. Commentary is timestamped and attributed to a staff number. It is not edited or removed — only appended to.</div>
+          <div class="commentary">
+            <div class="comment">
+              <div class="comment-meta">Staff #0041 &nbsp;·&nbsp; example entry</div>
+              <div class="comment-text">"Cross-reference PC-1203-UNK-007 — behavioral pattern is consistent. I believe these are the same subject."</div>
+            </div>
+            <div class="comment">
+              <div class="comment-meta">Staff #0009 &nbsp;·&nbsp; later entry</div>
+              <div class="comment-text">"Confirmed."</div>
+            </div>
+            <div class="comment">
+              <div class="comment-meta">Staff #0071 &nbsp;·&nbsp; later entry</div>
+              <div class="comment-text">"Status updated to Missing as of this date. We need to find it."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 -->
+      <div class="arch-block">
+        <div class="arch-block-head">
+          <div class="arch-block-label">09 &nbsp;·&nbsp; Cross-references</div>
+        </div>
+        <div class="arch-block-body">
+          <div class="note-small">Case IDs linked by the recording staff or added through commentary. No explanation is required in the cross-reference field itself — context is held in the respective files. A case may accumulate cross-references across centuries.</div>
+          <div class="badge-row">
+            <div class="badge">PC · 1203 · UNK · 007</div>
+            <div class="badge">PC · 1830 · ENT · 167</div>
+            <div class="badge">PC · 1899 · ENT · 003</div>
+          </div>
+          <div class="badge-note">Example cross-reference IDs — not real entries.</div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <div class="page-footer-left">
+          Paradoxa Chronicle Archive<br>
+          Document system · continuous
+        </div>
+        <div class="page-footer-greek">παράδοξα</div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  function showPage(id, tab) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    if (tab) tab.classList.add('active');
+    updateSidebarLinks(id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateSidebarLinks(id) {
+    document.querySelectorAll('.sidebar-nav-link').forEach(l => l.classList.remove('active'));
+    const target = document.getElementById('link-' + id);
+    if (target) target.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
