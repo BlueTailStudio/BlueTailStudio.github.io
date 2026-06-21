@@ -3,782 +3,1430 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PC · 1830 · ENT · 167 · The Proprietor</title>
-
+<title>PC · 1830 · ENT · 167 — The Proprietor · Paradoxa Chronicle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
 <style>
-
-*, *::before, *::after {
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-
-:root{
---ink:#1A1A18;
---ink-mid:#3A3835;
---ink-soft:#5A5855;
---ink-faint:#7A7870;
-
---page:#F0EBE1;
---page-dark:#E4DDD1;
---page-darker:#CEC8BE;
-
---white:#FDFAF6;
-
---scarlet:#8B1A1A;
---scarlet-light:#B52020;
---scarlet-pale:#F5EAEA;
-
---sidebar-w:240px;
-}
-
-
-body{
-background:var(--page);
-color:var(--ink);
-font-family:'Cormorant Garamond',serif;
-min-height:100vh;
-}
-
-
-
-/* NAV */
-
-nav{
-height:56px;
-background:var(--ink);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 2rem;
-position:sticky;
-top:0;
-z-index:5;
-}
-
-
-.nav-back{
-font-family:'Nunito';
-font-size:12px;
-color:white;
-opacity:.6;
-text-decoration:none;
-letter-spacing:.1em;
-text-transform:uppercase;
-}
-
-
-.nav-title{
-font-family:'IM Fell English';
-font-style:italic;
-color:white;
-opacity:.7;
-}
-
-
-.nav-center{
-display:flex;
-gap:10px;
-align-items:center;
-}
-
-
-.nav-seal{
-width:28px;
-height:28px;
-border:1px solid rgba(255,255,255,.3);
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-}
-
-
-
-.nav-tab{
-font-family:'Nunito';
-font-size:11px;
-letter-spacing:.1em;
-text-transform:uppercase;
-color:white;
-opacity:.5;
-text-decoration:none;
-padding:1rem;
-}
-
-
-/* LAYOUT */
-
-.layout{
-display:grid;
-grid-template-columns:var(--sidebar-w) 1fr;
-min-height:calc(100vh - 56px);
-}
-
-
-
-.sidebar{
-background:var(--white);
-border-right:1px solid var(--page-darker);
-padding:2rem 1.5rem;
-position:sticky;
-top:56px;
-height:calc(100vh - 56px);
-}
-
-
-
-.sidebar-title{
-font-family:'IM Fell English';
-font-size:22px;
-text-align:center;
-margin-bottom:2rem;
-}
-
-
-
-.sidebar-label{
-font-family:'Nunito';
-font-size:10px;
-letter-spacing:.2em;
-color:var(--scarlet);
-font-weight:700;
-text-transform:uppercase;
-margin-bottom:.7rem;
-}
-
-
-.sidebar-link{
-display:block;
-padding:.5rem 0;
-border-bottom:1px solid var(--page-dark);
-text-decoration:none;
-color:var(--ink-soft);
-}
-
-
-
-.sidebar-note{
-margin-top:2rem;
-background:var(--scarlet-pale);
-padding:1rem;
-font-style:italic;
-font-size:13px;
-color:var(--scarlet);
-}
-
-
-
-/* MAIN */
-
-.main{
-max-width:850px;
-padding:3rem;
-}
-
-
-
-.eyebrow{
-font-family:'Nunito';
-font-weight:700;
-font-size:11px;
-letter-spacing:.2em;
-color:var(--scarlet);
-text-transform:uppercase;
-}
-
-
-
-h1{
-font-family:'IM Fell English';
-font-size:48px;
-font-weight:400;
-margin:.5rem 0;
-}
-
-
-
-.subtitle{
-font-style:italic;
-color:var(--ink-soft);
-}
-
-
-
-.notice{
-margin:2rem 0;
-background:var(--white);
-border-left:3px solid var(--scarlet);
-padding:1.3rem;
-line-height:1.8;
-}
-
-
-
-.section-title{
-margin-top:2.5rem;
-font-family:'Nunito';
-font-size:11px;
-letter-spacing:.2em;
-text-transform:uppercase;
-color:var(--scarlet);
-}
-
-
-
-.card{
-background:var(--white);
-border:1px solid var(--page-darker);
-border-radius:10px;
-padding:1.5rem;
-margin-top:1rem;
-}
-
-
-
-.stats{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:1rem;
-}
-
-
-.stat{
-border-bottom:1px solid var(--page-dark);
-padding:.5rem;
-}
-
-
-.stat strong{
-font-family:'Nunito';
-font-size:11px;
-text-transform:uppercase;
-color:var(--scarlet);
-}
-
-
-
-/* ACCORDION */
-
-details{
-background:var(--white);
-border:1px solid var(--page-darker);
-border-radius:10px;
-margin-top:1rem;
-padding:1rem;
-}
-
-
-
-summary{
-cursor:pointer;
-font-family:'IM Fell English';
-font-size:22px;
-}
-
-
-
-.transcript{
-margin-top:1rem;
-line-height:1.8;
-}
-
-
-
-.speaker{
-font-family:'Nunito';
-font-weight:700;
-color:var(--scarlet);
-font-size:12px;
-letter-spacing:.1em;
-}
-
-
-
-.research-note{
-margin-top:1rem;
-background:var(--scarlet-pale);
-padding:1rem;
-font-style:italic;
-color:var(--scarlet);
-}
-
-
-
-/* BUTTON */
-
-.download{
-display:inline-block;
-margin-top:1rem;
-padding:.7rem 1rem;
-background:var(--ink);
-color:white;
-text-decoration:none;
-font-family:'Nunito';
-font-size:12px;
-letter-spacing:.1em;
-border-radius:6px;
-}
-
-
-
-.timeline div{
-padding:.8rem;
-border-left:2px solid var(--scarlet);
-margin-bottom:1rem;
-}
-
-
-
-footer{
-padding:2rem;
-text-align:center;
-font-style:italic;
-opacity:.5;
-}
-
-
-
-@media(max-width:700px){
-.layout{
-grid-template-columns:1fr;
-}
-.sidebar{
-display:none;
-}
-.main{
-padding:2rem;
-}
-}
-
-
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1A1A18;
+    --ink-mid: #3A3835;
+    --ink-soft: #5A5855;
+    --ink-faint: #7A7870;
+    --page: #F0EBE1;
+    --page-dark: #E4DDD1;
+    --page-darker: #CEC8BE;
+    --white: #FDFAF6;
+    --scarlet: #8B1A1A;
+    --scarlet-light: #B52020;
+    --scarlet-pale: #F5EAEA;
+    --sidebar-w: 260px;
+    --mono: 'Share Tech Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    gap: 1rem;
+  }
+
+  .nav-back {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-back:hover { color: rgba(255,255,255,0.9); }
+  .nav-back::before { content: '←'; font-size: 13px; }
+
+  .nav-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-seal {
+    width: 28px;
+    height: 28px;
+    border: 0.5px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+  }
+
+  .nav-id {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    min-height: calc(100vh - 56px);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    border-right: 0.5px solid var(--page-darker);
+    padding: 2rem 1.5rem;
+    position: sticky;
+    top: 56px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .sidebar-case-id {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .sidebar-case-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 20px;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 99px;
+    background: #EDF4F0;
+    border: 0.5px solid #A8C8B4;
+    color: #2A5A3A;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4A7C59;
+  }
+
+  .sidebar-divider { height: 0.5px; background: var(--page-darker); }
+
+  .sidebar-section-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--scarlet);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .sidebar-field {
+    display: flex;
+    flex-direction: column;
+    padding: 0.4rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+  }
+  .sidebar-field:last-child { border-bottom: none; }
+
+  .sidebar-field-key {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+
+  .sidebar-field-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.4;
+  }
+
+  .sidebar-field-val.scarlet { color: var(--scarlet); font-style: italic; }
+
+  .sidebar-toc-link {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0.3rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .sidebar-toc-link:last-child { border-bottom: none; }
+  .sidebar-toc-link:hover { color: var(--scarlet); }
+
+  .sidebar-footer {
+    margin-top: auto;
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-faint);
+    text-align: center;
+    opacity: 0.4;
+  }
+
+  /* MAIN */
+  .main { padding: 3rem 3rem 6rem; max-width: 820px; }
+
+  /* CASE HEADER */
+  .case-header {
+    border-bottom: 1px solid var(--page-darker);
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .case-header-id {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .case-header-title {
+    font-family: 'IM Fell English', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .case-header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .meta-pill {
+    font-size: 11px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 99px;
+    border: 0.5px solid var(--page-darker);
+    background: var(--white);
+    color: var(--ink-soft);
+  }
+
+  .meta-pill-scarlet {
+    background: var(--scarlet-pale);
+    border-color: #D4A0A0;
+    color: var(--scarlet);
+  }
+
+  /* SECTION */
+  .section { margin-bottom: 3rem; }
+
+  .section-anchor { display: block; position: relative; top: -80px; visibility: hidden; }
+
+  .section-head {
+    background: var(--ink);
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .section-head-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .section-head-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .section-body {
+    background: var(--white);
+    border: 0.5px solid var(--page-darker);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 1.5rem;
+  }
+
+  .section-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    margin-bottom: 1rem;
+  }
+  .section-text:last-child { margin-bottom: 0; }
+
+  /* FIELD ROWS */
+  .field-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 10px;
+    padding: 0.75rem 0;
+    border-bottom: 0.5px solid var(--page-dark);
+    align-items: start;
+  }
+  .field-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .field-key {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 2px;
+  }
+
+  .field-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .field-note {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+
+  /* REDACT */
+  .redact {
+    display: inline-block;
+    background: var(--ink);
+    color: transparent;
+    border-radius: 2px;
+    padding: 0 4px;
+    user-select: none;
+    min-width: 60px;
+  }
+
+  /* CAUTION BOX */
+  .caution-box {
+    background: var(--scarlet-pale);
+    border: 0.5px solid #D4A0A0;
+    border-left: 3px solid var(--scarlet);
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .caution-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--scarlet);
+    margin-bottom: 0.4rem;
+  }
+
+  .caution-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--scarlet);
+    line-height: 1.7;
+  }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 1.5rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 0.5px;
+    background: var(--page-darker);
+  }
+
+  .timeline-entry {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .timeline-entry:last-child { margin-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: -1.85rem;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--page-darker);
+    border: 2px solid var(--white);
+  }
+
+  .timeline-dot.scarlet { background: var(--scarlet); }
+
+  .timeline-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink-mid);
+    line-height: 1.75;
+  }
+
+  /* POLICE REPORT */
+  .police-report {
+    background: var(--page);
+    border: 0.5px solid var(--page-darker);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--mono);
+  }
+
+  .police-report-header {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 0.5px solid var(--page-darker);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .police-report-body {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  .police-report-footer {
+    font-size: 11px;
+    color: var(--ink-faint);
+    border-top: 0.5px solid var(--page-darker);
+    padding-top: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .img-placeholder {
+    background: var(--page-dark);
+    border: 0.5px dashed var(--page-darker);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+    margin: 1rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-faint);
+  }
+
+  /* DROPDOWN TRANSCRIPT */
+  .transcript-wrap {
+    border: 0.5px solid var(--page-darker);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .transcript-toggle {
+    width: 100%;
+    background: var(--page);
+    border: none;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: background 0.2s;
+    text-align: left;
+  }
+  .transcript-toggle:hover { background: var(--page-dark); }
+
+  .transcript-toggle-icon {
+    font-size: 14px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .transcript-toggle.open .transcript-toggle-icon { transform: rotate(180deg); }
+
+  .transcript-body {
+    display: none;
+    background: var(--white);
+    border-top: 0.5px solid var(--page-darker);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .transcript-body.open { display: block; }
+
+  .transcript-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 0.5px solid var(--page-dark);
+  }
+
+  .transcript-line {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+    align-items: start;
+  }
+
+  .transcript-speaker {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 2px;
+  }
+
+  .transcript-speaker.subject { color: var(--scarlet); }
+
+  .transcript-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .transcript-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin-top: 0.25rem;
+  }
+
+  /* COMMENTARY */
+  .commentary {
+    background: var(--page);
+    border: 0.5px solid var(--page-darker);
+    border-radius: 8px;
+    padding: 0.25rem 0;
+  }
+
+  .comment {
+    padding: 0.85rem 1.25rem;
+    border-bottom: 0.5px solid var(--page-darker);
+  }
+  .comment:last-child { border-bottom: none; }
+
+  .comment-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.35rem;
+  }
+
+  .comment-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  .comment.ad-entry {
+    background: #FFFDF5;
+    border: 0.5px solid #E8D8A0;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .comment-ad-label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #B89A30;
+    margin-bottom: 0.4rem;
+  }
+
+  .comment-ad-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .comment-ad-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  .comment-ad-stars {
+    font-size: 13px;
+    color: #B89A30;
+    margin-top: 0.4rem;
+  }
+
+  /* CROSS REFS */
+  .crossref-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .crossref-badge {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mid);
+    background: var(--page);
+    border: 0.5px solid var(--page-darker);
+    padding: 5px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .crossref-badge:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  /* LOG ENTRY */
+  .log-entry {
+    background: var(--page);
+    border: 0.5px solid var(--page-darker);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  .log-entry-header {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 0.5px solid var(--page-darker);
+  }
+
+  /* FOOTER */
+  .case-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--page-darker);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .case-footer-left {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .case-footer-right {
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink-faint);
+    opacity: 0.4;
+  }
+
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: 2rem 1.25rem 4rem; }
+    nav { padding: 0 1rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .transcript-line { grid-template-columns: 1fr; }
+  }
 </style>
-
 </head>
-
-
-
 <body>
 
-
 <nav>
-
-<a href="cases.html" class="nav-back">
-← Cases
-</a>
-
-
-<div class="nav-center">
-<div class="nav-seal">Π</div>
-<div class="nav-title">
-Paradoxa Chronicle
-</div>
-</div>
-
-
-<div>
-<a class="nav-tab" href="cases.html">
-Cases
-</a>
-</div>
-
+  <a href="cases.html" class="nav-back">Case Index</a>
+  <div class="nav-center">
+    <div class="nav-seal">Π</div>
+    <div class="nav-id">PC · 1830 · ENT · 167</div>
+  </div>
 </nav>
-
-
 
 <div class="layout">
 
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="sidebar-case-id">PC · 1830 · ENT · 167</div>
+      <div class="sidebar-case-title">The Proprietor</div>
+      <div class="sidebar-status">
+        <div class="status-dot"></div>
+        Active
+      </div>
+    </div>
 
-<aside class="sidebar">
+    <div class="sidebar-divider"></div>
 
+    <div>
+      <div class="sidebar-section-label">Classification</div>
+      <div class="sidebar-field">
+        <div class="sidebar-field-key">Class</div>
+        <div class="sidebar-field-val">Entity</div>
+      </div>
+      <div class="sidebar-field">
+        <div class="sidebar-field-key">Danger Rate</div>
+        <div class="sidebar-field-val scarlet">Contingent</div>
+      </div>
+      <div class="sidebar-field">
+        <div class="sidebar-field-key">Active Since</div>
+        <div class="sidebar-field-val">1830 (earliest confirmed)</div>
+      </div>
+      <div class="sidebar-field">
+        <div class="sidebar-field-key">Team</div>
+        <div class="sidebar-field-val">Historical · Philosophical</div>
+      </div>
+      <div class="sidebar-field">
+        <div class="sidebar-field-key">Recorded by</div>
+        <div class="sidebar-field-val">Staff #0014</div>
+      </div>
+      <div class="sidebar-field">
+        <div class="sidebar-field-key">Last updated</div>
+        <div class="sidebar-field-val">2026</div>
+      </div>
+    </div>
 
-<div class="sidebar-title">
-Paradoxa<br>
-Chronicle
+    <div class="sidebar-divider"></div>
+
+    <div>
+      <div class="sidebar-section-label">Contents</div>
+      <a href="#overview" class="sidebar-toc-link">Overview</a>
+      <a href="#caution" class="sidebar-toc-link">Caution Notes</a>
+      <a href="#history" class="sidebar-toc-link">Historical Record</a>
+      <a href="#police" class="sidebar-toc-link">Police Records</a>
+      <a href="#1830-interview" class="sidebar-toc-link">Interview — 1831</a>
+      <a href="#1942-op" class="sidebar-toc-link">Operational Record — 1942</a>
+      <a href="#1955-interview" class="sidebar-toc-link">Interview — 1955</a>
+      <a href="#civilian" class="sidebar-toc-link">Civilian Incident — 2001</a>
+      <a href="#commentary" class="sidebar-toc-link">Staff Commentary</a>
+      <a href="#crossrefs" class="sidebar-toc-link">Cross-References</a>
+    </div>
+
+    <div class="sidebar-footer">παράδοξα</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HEADER -->
+    <div class="case-header">
+      <div class="case-header-id">PC · 1830 · ENT · 167 &nbsp;·&nbsp; Public Record</div>
+      <h1 class="case-header-title">The Proprietor</h1>
+      <div style="font-family:'IM Fell English',serif; font-size:14px; font-style:italic; color:var(--ink-soft); margin-top:0.25rem;">
+        Designation: <span class="redact">N█████ R███</span> &nbsp;·&nbsp; Known alias: N.R.
+      </div>
+      <div class="case-header-meta">
+        <span class="meta-pill">Entity</span>
+        <span class="meta-pill meta-pill-scarlet">Contingent</span>
+        <span class="meta-pill">Active since 1830</span>
+        <span class="meta-pill">Historical · Philosophical</span>
+        <span class="meta-pill">Public — updated 2016</span>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <span class="section-anchor" id="overview"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">01 · Overview</div>
+      </div>
+      <div class="section-body">
+        <p class="section-text">
+          The subject designated PC · 1830 · ENT · 167, referred to within this record as <em>The Proprietor</em>, is an entity of unknown origin first confirmed by the Archive in 1830 following a mass casualty event at a Salon establishment in <span class="redact">████████</span>, Midwest region of the United States. The subject presents as a human male of indeterminate age, operating as the proprietor and sole staff member of whatever establishment it currently inhabits.
+        </p>
+        <p class="section-text">
+          Current evidence suggests the subject is not separate from the establishment it occupies, but constitutes a single unified entity — the building, its contents, and its front-facing human form functioning as integrated components of one organism. The subject's human form acts as its means of communication and guest management. The establishment itself serves as its body.
+        </p>
+        <p class="section-text">
+          The subject has been observed across multiple decades and locations, each time occupying a different form of lodging establishment consistent with the dominant travel culture of the era. It is not known whether the subject selects these forms deliberately or reflects them instinctively. No theological classification applies. The subject confirmed in interview that it holds no understanding of religious frameworks when directly questioned.
+        </p>
+        <div class="field-row">
+          <div class="field-key">Current location</div>
+          <div class="field-val"><span class="redact">████████████</span>, <span class="redact">███████</span>, California. Passive observation ongoing.</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key">Current form</div>
+          <div class="field-val">Roadside motel. Exterior consistent with mid-20th century American motor lodge.</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key">Subject designation</div>
+          <div class="field-val"><span class="redact">N█████ R███</span> (redacted to prevent subject recognition and cognitive re-attachment in former guests)</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key">Known alias</div>
+          <div class="field-val">N.R. — self-assigned, 1955 contact</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAUTION -->
+    <span class="section-anchor" id="caution"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">02 · Caution Notes</div>
+        <div class="section-head-tag">Read before any field approach</div>
+      </div>
+      <div class="section-body">
+        <div class="caution-box">
+          <div class="caution-label">Primary trigger — confirmed</div>
+          <div class="caution-text">
+            The subject is believed to become dangerous when its internal order — specifically its rules regarding room assignment and guest conduct — is violated. The 1830 mass casualty event was determined to have been triggered by guests disregarding assigned lodging arrangements. The subject does not warn. Response is immediate and without observable emotional activation.
+          </div>
+        </div>
+        <div class="caution-box">
+          <div class="caution-label">Property integrity — confirmed</div>
+          <div class="caution-text">
+            Members must not damage the physical structure of the establishment in any way. Testing in 1831 confirmed that damage to the building provokes an extreme response. The subject changes form when this occurs. Members who conduct property tests must do so outside the premises. Note: the building has been observed to pursue members who remove structural material. Pursuit ceases when civilian witnesses are present.
+          </div>
+        </div>
+        <div class="caution-box">
+          <div class="caution-label">Overnight stay — avoid</div>
+          <div class="caution-text">
+            The subject consistently and insistently offers accommodation to visiting members. Under no circumstances should Chronicle members accept. The subject does not show aggression when refused, but the offer will be repeated. The reason for this insistence remains under investigation.
+          </div>
+        </div>
+        <div class="caution-box">
+          <div class="caution-label">Premises boundary</div>
+          <div class="caution-text">
+            The subject has not been observed to leave the boundary of its establishment voluntarily. Pursuit of members who removed structural material in 1831 is the single recorded exception, and was abandoned when pedestrians entered the area. Interviews may be conducted safely at the threshold of the premises.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORICAL RECORD -->
+    <span class="section-anchor" id="history"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">03 · Historical Record</div>
+      </div>
+      <div class="section-body">
+        <div class="timeline">
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">1830</div>
+            <div class="timeline-text">
+              Subject first confirmed operating as proprietor of a Salon establishment in <span class="redact">████████</span>, Midwest. 36 deaths recorded over a period of weeks, attributed by local law enforcement to gang violence. Archive cross-referenced Sheriff's report with anomalous behavioral patterns and opened this case. The subject was the only individual present across all incident periods who was not listed among the dead or missing.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">1831</div>
+            <div class="timeline-text">
+              Archive dispatched a mixed Historical and Philosophical team to the Salon following conclusion of the 1830 incident. Members concealed identities and institutional affiliation. Interview conducted — see transcript below. Post-interview structural testing conducted outside premises. Subject pursued member carrying removed wall material for approximately 40 meters before abandoning pursuit upon encountering pedestrian traffic. Subject showed no further aggression.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">1831 — approx.</div>
+            <div class="timeline-text">
+              Following the 1831 contact, the Archive maintained periodic observation of the Salon. No further mass casualty events were recorded in the period. Guest population remained low. Subject behavior consistent with earlier observation.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">Late 1800s</div>
+            <div class="timeline-text">
+              The Salon ceased operation. Archive records the subject's status as <strong>Missing</strong> for this period. Cross-reference with PC · <span class="redact">████</span> · ENT · <span class="redact">███</span> for possible sightings during this interval — connection unconfirmed.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">1925</div>
+            <div class="timeline-text">
+              A roadside motel opened near <span class="redact">████████</span>, California. Reports of time displacement among guests reached the Archive via a law enforcement correspondent. Status updated from Missing to Active. A team was not dispatched at this stage due to resource constraints and uncertainty of identification.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">1942</div>
+            <div class="timeline-text">
+              A team of volunteers sourced from an external organization operating under similar parameters was trained by Archive Historical staff and dispatched to the motel for a structured three-day stay. The team did not return. Their records were recovered and are included below. One member continued returning to the establishment voluntarily until death by dehydration and starvation. The subject attempted to prevent Archive staff from recovering the body, stating the individual was "still a guest." No aggression was displayed during the retrieval.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">1955</div>
+            <div class="timeline-text">
+              Nine deaths recorded at the motel. Local law enforcement investigation inconclusive. Archive conducted second interview with the subject. See transcript below. An unidentified civilian, origin year unknown, was present during the incident. This individual was not confirmed among the deceased and their current whereabouts and time of origin remain unknown. Interview with this individual has not been possible.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">2001</div>
+            <div class="timeline-text">
+              See Civilian Incident section below.
+            </div>
+          </div>
+          <div class="timeline-entry">
+            <div class="timeline-dot scarlet"></div>
+            <div class="timeline-year">2016 — present</div>
+            <div class="timeline-text">
+              This record was updated to public access status in 2016 following the subject's reappearance in a new location and the increased risk to uninformed civilians. An Archive research team has been stationed in <span class="redact">████████</span>, California for passive observation. No direct contact has been initiated as of this record. A new pattern of guest experience has been observed and is currently under active investigation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POLICE RECORDS -->
+    <span class="section-anchor" id="police"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">04 · Police Records</div>
+        <div class="section-head-tag">Sourced via Archive law enforcement correspondents</div>
+      </div>
+      <div class="section-body">
+
+        <div class="police-report">
+          <div class="police-report-header">
+            Sheriff's Office · <span class="redact">████████</span> County · Incident Report · 1830
+          </div>
+          <div class="police-report-body">
+INCIDENT TYPE: Mass casualty / suspected gang violence<br>
+LOCATION: <span class="redact">████████</span> Salon, <span class="redact">████████</span> St., <span class="redact">████████</span><br>
+TOTAL DECEASED: 36<br>
+PERIOD: Approx. <span class="redact">██</span> weeks<br><br>
+
+Deaths occurred across multiple incidents over the recorded period. Cause of death varied. No single consistent method of killing was identified, which led initial investigators to suspect multiple perpetrators operating within or associated with regional gang activity.<br><br>
+
+The proprietor of the Salon, a <span class="redact">████████</span> male, was interviewed on <span class="redact">██/██/1830</span>. He was cooperative and showed no distress. He stated that all individuals had been guests of the establishment and that he had assigned each to their rooms as was customary. He expressed no reaction when informed of the death toll.<br><br>
+
+No arrests were made. Case attributed to gang activity and closed on <span class="redact">██/██/1830</span>.<br><br>
+
+<em>[Archive note: Sheriff concluded gang violence due to absence of a more plausible explanation. The subject's non-reaction was noted by the interviewing deputy but not flagged. — Staff #0014]</em>
+          </div>
+          <div class="police-report-footer">
+            Archive copy · Original held at <span class="redact">████████</span> County records · Correspondent: Staff #0011
+          </div>
+        </div>
+
+        <div class="img-placeholder">
+          [ Newspaper clipping — <span class="redact">████████</span> Gazette, 1830 — image to be attached ]
+        </div>
+
+        <div class="police-report">
+          <div class="police-report-header">
+            <span class="redact">████████</span> County Sheriff's Department · Incident Report · 1955
+          </div>
+          <div class="police-report-body">
+INCIDENT TYPE: Multiple homicide / cause undetermined<br>
+LOCATION: Old <span class="redact">████████</span> Motel, <span class="redact">████████</span> Highway, <span class="redact">████████</span>, California<br>
+TOTAL DECEASED: 9<br>
+PERIOD: Single incident<br><br>
+
+Nine guests of the motel were found deceased on the morning of <span class="redact">██/██/1955</span>. Cause of death varied across victims. No weapon was recovered. The motel proprietor, who identified himself only as N.R., was present and cooperative. He stated that guests had not complied with the room arrangements as assigned at check-in.<br><br>
+
+One individual registered in the guest log — Room <span class="redact">██</span> — could not be located at the scene. Name and address provided at check-in could not be verified. The individual is listed as missing.<br><br>
+
+N.R. was taken in for questioning. He answered all questions posed to him. Investigators noted an absence of affect throughout the interview. He was released as no direct evidence of involvement could be established. The case remains open.<br><br>
+
+<em>[Archive note: The unaccounted guest in Room <span class="redact">██</span> is the unidentified civilian referenced elsewhere in this record. Origin year remains unknown. — Staff #0041]</em>
+          </div>
+          <div class="police-report-footer">
+            Archive copy · Original held at <span class="redact">████████</span> County records · Correspondent: Staff #0038
+          </div>
+        </div>
+
+        <div class="img-placeholder">
+          [ Newspaper clipping — <span class="redact">████████</span> County Courier, 1955 — image to be attached ]
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 1831 INTERVIEW -->
+    <span class="section-anchor" id="1830-interview"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">05 · Interview Transcript — 1831</div>
+        <div class="section-head-tag">Post-incident · Salon premises · Identities concealed</div>
+      </div>
+      <div class="section-body">
+        <p class="section-text" style="margin-bottom:1.25rem;">
+          Interview conducted at the threshold of the Salon premises approximately three months after the 1830 incident. Team members concealed their faces and did not disclose organizational affiliation. The subject was cooperative throughout and showed no awareness of or concern for the identities of those present. The primary concern expressed by the subject during the interview was whether the visiting members would be requiring rooms.
+        </p>
+
+        <div class="transcript-wrap">
+          <button class="transcript-toggle" onclick="toggleTranscript(this)">
+            Interview Transcript · 1831 · Staff #0014 (lead) · Staff #0016
+            <span class="transcript-toggle-icon">▾</span>
+          </button>
+          <div class="transcript-body">
+            <div class="transcript-meta">
+              DATE: <span class="redact">██/██</span>/1831 &nbsp;·&nbsp; LOCATION: <span class="redact">████████</span> Salon, threshold &nbsp;·&nbsp; TEAM: Historical (lead) · Philosophical &nbsp;·&nbsp; SUBJECT: The Proprietor
+            </div>
+
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0014</div>
+              <div class="transcript-text">Good afternoon. We are travelers passing through. We had some questions about the establishment, if you would permit.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">Of course. Will you be needing rooms?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0014</div>
+              <div class="transcript-text">Not at this time, thank you. We understand there was some trouble here recently. A number of deaths.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">There was. Are you sure you would not like a room? I have several available.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0016</div>
+              <div class="transcript-text">We appreciate the offer. Perhaps we can speak first. Can you tell us what happened?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">Guests were placed in their rooms. Some of them did not stay in their rooms. A couple — they had their own room, each of them — but one stayed only in the other's room. That room was not their room.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0016</div>
+              <div class="transcript-text">And the other deaths?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">Some guests saw. Some guests said things. The rooms were not being used correctly.</div>
+              <div class="transcript-note">[No further elaboration offered. Subject did not appear to consider this insufficient as an explanation.]</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0014</div>
+              <div class="transcript-text">Do you feel anything about what happened?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">I feel that the rooms are now empty.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0016</div>
+              <div class="transcript-text">We have heard that some believe you to be something other than human. A demon, perhaps, or something of a religious nature.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">I don't know what those are.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0016</div>
+              <div class="transcript-text">Are you human?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">I am the proprietor.</div>
+              <div class="transcript-note">[Pause. Subject looked toward the interior of the Salon before continuing.]</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">Are you sure you would not like rooms? I also have girls available, if that is of interest. They attend to guests in the evenings.</div>
+              <div class="transcript-note">[Referring to the Salon's service women — women employed in entertainment and companionship roles common to frontier Salon establishments of the period. Offer made without change in tone or apparent meaning.]</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0014</div>
+              <div class="transcript-text">No, thank you. One last question. Did you grow up here? Do you have family?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">I had a mother. A father. We each had our own spaces. That is how it should be.</div>
+              <div class="transcript-note">[Subject did not elaborate further and redirected the conversation once more to the availability of rooms. Interview concluded.]</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="section-text" style="margin-top:1rem; font-size:15px; color:var(--ink-soft);">
+          Following the interview, Staff #0016 conducted a structural test outside the premises, removing a small quantity of wood from an exterior wall panel. The subject immediately changed form — a full description is held in the restricted addendum to this file — and pursued the staff member for approximately 40 meters. Pursuit ceased when three pedestrians entered the street. The staff member returned to the Archive without injury.
+        </p>
+      </div>
+    </div>
+
+    <!-- 1942 OPERATIONAL -->
+    <span class="section-anchor" id="1942-op"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">06 · Operational Record — 1942</div>
+        <div class="section-head-tag">External volunteer deployment · Motel premises</div>
+      </div>
+      <div class="section-body">
+        <p class="section-text">
+          Due to the assessed risk to Archive staff, a team of volunteers sourced from an external organization operating under similar parameters was engaged for this operation. Volunteers were briefed and trained in basic recording protocol by Archive Historical staff before deployment. They were not informed of the full contents of this case file.
+        </p>
+        <p class="section-text">
+          The team checked into the motel on <span class="redact">██/██/1942</span> for a planned three-night stay. Their final log entries are reproduced below. The team did not return. Archive Historical staff recovered the written records from the premises six days later. One team member — Volunteer <span class="redact">████</span> — had continued returning to the motel voluntarily after the planned departure date. He was found deceased inside the premises on day six, cause of death determined as dehydration and starvation. The subject indicated the individual was still a registered guest and requested the body not be removed. No aggression was displayed. The body was retrieved.
+        </p>
+
+        <div class="transcript-wrap">
+          <button class="transcript-toggle" onclick="toggleTranscript(this)">
+            Volunteer Team Log — 1942 · Recovered Records
+            <span class="transcript-toggle-icon">▾</span>
+          </button>
+          <div class="transcript-body">
+            <div class="transcript-meta">
+              TEAM: 4 volunteers (external organization) · TRAINED BY: Staff #0029 (Historical) · PLANNED STAY: 3 nights · OUTCOME: Team lost / one body recovered
+            </div>
+
+            <div class="log-entry">
+              <div class="log-entry-header">Day 1 · Evening · Volunteer <span class="redact">████</span> (lead recorder)</div>
+              Checked in without incident. Proprietor assigned rooms — one per person, no deviation permitted. He asked twice whether we would like additional services. We declined. Rooms are clean. Older than expected for a motel of this age. The proprietor watches the hallway from the front desk. Can see him from the gap under the door.
+            </div>
+
+            <div class="log-entry">
+              <div class="log-entry-header">Day 2 · Morning · Volunteer <span class="redact">████</span></div>
+              Something happened last night. I cannot explain it clearly. I was in my room and then I was not. There were people I did not recognize — dressed differently. The building was the same building but it smelled different. Like wood smoke and animals. A woman was laughing somewhere. Then I was back in my room. I am writing this down because that is what I was told to do. The others say the same thing happened to them. We are discussing whether to leave.
+            </div>
+
+            <div class="log-entry">
+              <div class="log-entry-header">Day 2 · Afternoon · Volunteer <span class="redact">████</span></div>
+              We did not leave. <span class="redact">████</span> said he wanted one more night. He said there was a woman in the other place who he needed to speak to again. The proprietor gave us dinner. He seemed pleased we were staying.
+            </div>
+
+            <div class="log-entry">
+              <div class="log-entry-header">Day 3 · Morning · Volunteer <span class="redact">████</span> (lead recorder — others not present)</div>
+              I cannot find the others. The proprietor says they went back to their rooms. I looked. They are not in their rooms. There was blood in the hallway that was not from this time. I think it was from the other place. I am leaving now. I am leaving this log at the front desk. The proprietor asked me why I was leaving early. I told him I had to go. He said my room was still available. He said it in the same voice as when I arrived.
+            </div>
+
+            <div class="log-entry" style="border-color: #D4A0A0; background: var(--scarlet-pale);">
+              <div class="log-entry-header" style="color:var(--scarlet);">Additional note — recovered separately · Handwriting identified as Volunteer <span class="redact">████</span></div>
+              <span style="color:var(--scarlet);">I know how it ends for her. If I go back I can stop it. I know I can stop it this time. The room is still there. He said the room is still there.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1955 INTERVIEW -->
+    <span class="section-anchor" id="1955-interview"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">07 · Interview Transcript — 1955</div>
+        <div class="section-head-tag">Post-incident · Motel premises · Historical · Philosophical team</div>
+      </div>
+      <div class="section-body">
+        <p class="section-text" style="margin-bottom:1.25rem;">
+          Interview conducted following the 1955 incident. Theological representation was not included in this team, as the theological classification had been ruled out following the 1831 interview. The subject's manner was notably more adapted to human conversational convention than in 1831, though the Archive cannot confirm whether this reflects change in the subject or improved mimicry. The subject's name — N.R. — was self-assigned. Full name is redacted in this public record to prevent cognitive re-attachment in former guests.
+        </p>
+
+        <div class="transcript-wrap">
+          <button class="transcript-toggle" onclick="toggleTranscript(this)">
+            Interview Transcript · 1955 · Staff #0038 (lead) · Staff #0041
+            <span class="transcript-toggle-icon">▾</span>
+          </button>
+          <div class="transcript-body">
+            <div class="transcript-meta">
+              DATE: <span class="redact">██/██</span>/1955 &nbsp;·&nbsp; LOCATION: Motel threshold, <span class="redact">████████</span>, California &nbsp;·&nbsp; TEAM: Historical (lead) · Philosophical &nbsp;·&nbsp; NO THEOLOGICAL MEMBER (ruled out, 1831)
+            </div>
+
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0038</div>
+              <div class="transcript-text">Can you tell us your name?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">N.R. Will you be needing rooms?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0038</div>
+              <div class="transcript-text">Not tonight. We wanted to ask about what happened here. Nine people died.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">They were not in their rooms.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0041</div>
+              <div class="transcript-text">You mean they were in the wrong rooms?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">A room is a room. Everyone has their own. That is the arrangement.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0041</div>
+              <div class="transcript-text">Do you understand that what you did is considered a crime? That killing people is considered wrong?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">I understand that people say so.</div>
+              <div class="transcript-note">[No further response. Subject appeared to consider the question settled.]</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0038</div>
+              <div class="transcript-text">There was a guest who cannot be accounted for. Someone who was in the register but not among the dead. Do you know where that person is?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">He checked in. He was in his room.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0038</div>
+              <div class="transcript-text">Was. Is he still here?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">He left. Guests leave.</div>
+              <div class="transcript-note">[Subject paused briefly before adding:]</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">Most of them.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0041</div>
+              <div class="transcript-text">We spoke with someone like you once. A long time ago. At a Salon, not a motel. Was that you?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">I have always been here.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0041</div>
+              <div class="transcript-text">That person mentioned their family. A mother. A father. Each in their own space.</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">Yes.</div>
+              <div class="transcript-note">[No elaboration. Subject showed no recognition of the implication that this confirmed continuity of identity across 124 years.]</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker">Staff #0038</div>
+              <div class="transcript-text">Are you human?</div>
+            </div>
+            <div class="transcript-line">
+              <div class="transcript-speaker subject">Subject</div>
+              <div class="transcript-text">I am the proprietor.</div>
+              <div class="transcript-note">[Identical response to 1831 interview. No change in phrasing or affect. Interview concluded. Subject reminded team once more that rooms were available.]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CIVILIAN INCIDENT -->
+    <span class="section-anchor" id="civilian"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">08 · Civilian Incident — 2001</div>
+        <div class="section-head-tag">Unidentified civilian · Origin year unknown</div>
+      </div>
+      <div class="section-body">
+        <p class="section-text">
+          In 2001, an unidentified civilian with no known connection to the Archive or any affiliated organization was recorded as a guest at the motel. The individual's name provided at check-in could not be verified. Their origin year is unknown. Cross-referencing of their physical description, speech patterns, and personal effects observed during the stay suggests possible temporal displacement, though this has not been confirmed.
+        </p>
+        <p class="section-text">
+          The individual was not among any recorded casualties. Their current whereabouts are unknown. No interview has been possible. The subject (N.R.) has made no comment on this individual beyond confirming they checked in and checked out.
+        </p>
+        <div class="field-row">
+          <div class="field-key">Identity</div>
+          <div class="field-val">Unidentified · No records match</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key">Origin year</div>
+          <div class="field-val">Unknown · Temporal displacement suspected</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key">Status</div>
+          <div class="field-val">Not confirmed deceased · Current location unknown</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key">Interview</div>
+          <div class="field-val">Not possible · Location unknown</div>
+        </div>
+        <div class="field-row">
+          <div class="field-key">Archive note</div>
+          <div class="field-val">
+            <span style="font-style:italic; color:var(--ink-soft);">A double time-slip event — a civilian displaced into the 1830s Salon — has been noted in cross-reference materials. Whether this is the same individual cannot be confirmed. Further investigation required. — Staff #0041</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMENTARY -->
+    <span class="section-anchor" id="commentary"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">09 · Staff Commentary</div>
+        <div class="section-head-tag">Appended in order · Not edited · Not removed</div>
+      </div>
+      <div class="section-body" style="padding:0;">
+        <div class="commentary">
+
+          <div class="comment">
+            <div class="comment-meta">Staff #0041 · 2001</div>
+            <div class="comment-text">"The civilian incident changes things. This is the first time a non-Archive, non-volunteer individual has been confirmed inside the premises and survived — as far as we know. We don't know where they came from or where they went. We don't know if they're still alive. We don't know what year they think it is. Adding cross-reference flag for temporal displacement cases."</div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-meta">Staff #0029 · 2003</div>
+            <div class="comment-text">"I trained the 1942 team. I have thought about Volunteer <span class="redact">████</span> for sixty years. His note was in his own handwriting. He was not confused or coerced. He went back because he wanted to. The room was still there. It is always still there. I do not think we should be sending anyone else in."</div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-meta">Staff #0055 · 2009</div>
+            <div class="comment-text">"Cross-referencing 1831 structural test results with current architectural surveys of the motel. The building's footprint changes. Not drastically. But the east wall is not where it was in the 1955 police photographs. It has moved approximately 1.2 meters. This is not settling or subsidence. Flagging for physical investigation."</div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-meta">Staff #0038 · 2016</div>
+            <div class="comment-text">"Recommending this record be made public. The motel is active again and in a new location. Civilian exposure risk is too high to keep this internal only. The public record should not include the subject's full name — re-attachment risk for anyone who has stayed there is real. Redaction of N.R.'s full name approved by Archive senior staff."</div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-meta">Staff #0062 · 2016</div>
+            <div class="comment-text">"Team stationed as of this month. Passive observation only per caution notes. The motel is operating normally from the outside. Guests check in. Some check out. We are counting the ones who don't. The proprietor waves at us from the window sometimes. Same face. Same wave."</div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-meta">Staff #0062 · 2019</div>
+            <div class="comment-text">"The loop has changed. The 1942 team described the same six-day experience — same people, same sequence. Guests coming out now are describing something different. The people inside are not the same. The sequence is different. Either the 1955 event changed something, or the civilian did. We don't know yet. Research ongoing."</div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-meta">Staff #0041 · 2023</div>
+            <div class="comment-text">"I have been on this case since 1955. I am retiring this year. I want it on record that in seventy years, the proprietor has not changed. Not one thing. Same answer to the same question. Same offer of a room. I do not believe he remembers us between visits. I do not believe he is capable of it. I also do not believe that makes him less dangerous."</div>
+          </div>
+
+          <div class="comment ad-entry">
+            <div class="comment-ad-label">⚑ &nbsp; External listing detected · 2026 · Source: Airbnb · Florida</div>
+            <div class="comment-ad-title">🏠 &nbsp; Charming Roadside Retreat — Sleeps 12</div>
+            <div class="comment-ad-text">
+              Step back in time at this one-of-a-kind vintage motel tucked off the highway. Original 1950s decor lovingly preserved. Each room individually decorated. Quiet, private, and unlike anywhere you've stayed before. Guests say it feels like the outside world just... disappears. Perfect for groups, long weekends, or anyone who needs to get away from it all. Host N.R. is attentive and welcoming — he'll make sure you're in the right room.
+              <br><br>
+              <em>"I went for a weekend and didn't want to leave. I still think about it."</em> ⭐⭐⭐⭐⭐
+              <br>
+              <em>"I can't explain it but something about this place felt important. Like I was supposed to be there."</em> ⭐⭐⭐⭐⭐
+            </div>
+            <div class="comment-ad-stars">⭐ 4.9 &nbsp;·&nbsp; 847 reviews &nbsp;·&nbsp; Florida &nbsp;·&nbsp; <span style="color:var(--ink-faint); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:13px;">[ No further staff commentary on this entry. ]</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- CROSS REFERENCES -->
+    <span class="section-anchor" id="crossrefs"></span>
+    <div class="section">
+      <div class="section-head">
+        <div class="section-head-label">10 · Cross-References</div>
+      </div>
+      <div class="section-body">
+        <p class="section-text" style="font-size:15px; margin-bottom:1rem;">The following cases have been linked to this record by Archive staff. No explanation is provided here — context is held in the respective files.</p>
+        <div class="crossref-row">
+          <span class="crossref-badge">PC · <span class="redact">████</span> · ENT · <span class="redact">███</span></span>
+          <span class="crossref-badge">PC · 1942 · PHN · <span class="redact">███</span></span>
+          <span class="crossref-badge">PC · 2001 · UNK · <span class="redact">███</span></span>
+          <span class="crossref-badge">PC · <span class="redact">████</span> · PHN · <span class="redact">███</span></span>
+        </div>
+        <p style="font-size:12px; font-style:italic; color:var(--ink-faint); margin-top:0.75rem; font-family:'Cormorant Garamond',serif;">Some cross-referenced case IDs are partially redacted in the public version of this record.</p>
+      </div>
+    </div>
+
+    <div class="case-footer">
+      <div class="case-footer-left">
+        PC · 1830 · ENT · 167 &nbsp;·&nbsp; Public Record<br>
+        Paradoxa Chronicle Archive &nbsp;·&nbsp; Last updated 2026
+      </div>
+      <div class="case-footer-right">παράδοξα</div>
+    </div>
+
+  </main>
 </div>
 
-
-<div class="sidebar-label">
-Record
-</div>
-
-
-<a class="sidebar-link" href="#">
-Summary
-</a>
-
-
-<a class="sidebar-link" href="#">
-Interviews
-</a>
-
-
-<a class="sidebar-link" href="#">
-Incidents
-</a>
-
-
-<a class="sidebar-link" href="#">
-Attachments
-</a>
-
-
-
-<div class="sidebar-note">
-
-Original documentation
-preserved since 1830.
-
-The Archive seal remains
-unchanged.
-
-</div>
-
-
-</aside>
-
-
-
-
-
-<main class="main">
-
-
-<div class="eyebrow">
-PC · 1830 · ENT · 167
-</div>
-
-
-<h1>
-The Proprietor
-</h1>
-
-
-<div class="subtitle">
-Entity Record · Public Access
-</div>
-
-
-
-<div class="notice">
-
-This file has been digitized from handwritten
-Chronicle documentation dated 1830.
-
-Certain sections have been reconstructed.
-Original materials remain archived.
-
-</div>
-
-
-
-<div class="card stats">
-
-
-<div class="stat">
-<strong>Classification</strong><br>
-Entity
-</div>
-
-
-<div class="stat">
-<strong>Status</strong><br>
-Missing / Active Concern
-</div>
-
-
-<div class="stat">
-<strong>First Recorded</strong><br>
-1830
-</div>
-
-
-<div class="stat">
-<strong>Known Alias</strong><br>
-N.R.
-</div>
-
-
-</div>
-
-
-
-
-<div class="section-title">
-Entity Summary
-</div>
-
-
-<div class="card">
-
-The subject presents as a human male proprietor.
-
-Early records describe normal speech,
-social behavior, and consistent hospitality.
-
-However, violations of rules established by
-the subject correlate with violent
-behavioral changes.
-
-The Chronicle does not classify the subject
-as religious or divine.
-
-</div>
-
-
-
-
-
-<div class="section-title">
-Interview Archive
-</div>
-
-
-
-<details>
-
-<summary>
-Interview 1830-A · Initial Contact
-</summary>
-
-
-<div class="transcript">
-
-
-<p class="speaker">
-INTERVIEWER:
-</p>
-
-<p>
-Your concern appears to be whether we will
-remain overnight.
-</p>
-
-
-<p class="speaker">
-SUBJECT:
-</p>
-
-<p>
-Naturally.
-</p>
-
-
-<p class="speaker">
-INTERVIEWER:
-</p>
-
-<p>
-Why?
-</p>
-
-
-<p class="speaker">
-SUBJECT:
-</p>
-
-<p>
-The rooms are prepared.
-</p>
-
-
-<div class="research-note">
-
-Researcher's note:
-
-Subject avoided direct answers and
-redirected conversation toward hospitality.
-
-</div>
-
-
-</div>
-
-</details>
-
-
-
-
-
-<details>
-
-<summary>
-Interview 1955-B · Follow-up
-</summary>
-
-
-<div class="transcript">
-
-
-<p class="speaker">
-INTERVIEWER:
-</p>
-
-<p>
-Do you remember the Salon?
-</p>
-
-
-<p class="speaker">
-N.R:
-</p>
-
-<p>
-Yes.
-</p>
-
-
-<p class="speaker">
-INTERVIEWER:
-</p>
-
-<p>
-Are you the same individual recorded in 1830?
-</p>
-
-
-<p class="speaker">
-N.R:
-</p>
-
-<p>
-...
-</p>
-
-
-
-<div class="research-note">
-
-Researcher's note:
-
-Subject displayed increased human-like behavior
-compared to earlier records.
-
-</div>
-
-
-</div>
-
-</details>
-
-
-
-
-
-
-
-<div class="section-title">
-Incident Timeline
-</div>
-
-
-
-<div class="card timeline">
-
-
-<div>
-<b>1830</b><br>
-Salon incident. Nine civilian deaths recorded.
-</div>
-
-
-<div>
-<b>1831</b><br>
-Containment observation initiated.
-Subject unable to leave premises.
-</div>
-
-
-<div>
-<b>1955</b><br>
-Motel incident. Temporal displacement suspected.
-</div>
-
-
-<div>
-<b>Current</b><br>
-Investigation ongoing.
-Location redacted.
-</div>
-
-
-</div>
-
-
-
-
-
-
-<div class="section-title">
-Attachments
-</div>
-
-
-<div class="card">
-
-
-Police report:
-1830 Salon Incident
-
-
-<br><br>
-
-
-Newspaper clipping:
-[Image pending]
-
-
-<br><br>
-
-
-<a class="download" href="#">
-Download Archived PDF
-</a>
-
-
-</div>
-
-
-
-
-
-
-<div class="section-title">
-Research Note
-</div>
-
-
-<div class="card">
-
-The subject may not be protecting the building.
-
-Current theory suggests:
-
-the building may be protecting the subject.
-
-</div>
-
-
-
-<footer>
-παράδοξα
-</footer>
-
-
-
-</main>
-
-
-</div>
-
+<script>
+  function toggleTranscript(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+  }
+</script>
 
 </body>
 </html>
