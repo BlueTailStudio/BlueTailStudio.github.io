@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PC · 1830 · ENT · 167 · The Proprietor</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+*, *::before, *::after {
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+
+:root{
+--ink:#1A1A18;
+--ink-mid:#3A3835;
+--ink-soft:#5A5855;
+--ink-faint:#7A7870;
+
+--page:#F0EBE1;
+--page-dark:#E4DDD1;
+--page-darker:#CEC8BE;
+
+--white:#FDFAF6;
+
+--scarlet:#8B1A1A;
+--scarlet-light:#B52020;
+--scarlet-pale:#F5EAEA;
+
+--sidebar-w:240px;
+}
+
+
+body{
+background:var(--page);
+color:var(--ink);
+font-family:'Cormorant Garamond',serif;
+min-height:100vh;
+}
+
+
+
+/* NAV */
+
+nav{
+height:56px;
+background:var(--ink);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 2rem;
+position:sticky;
+top:0;
+z-index:5;
+}
+
+
+.nav-back{
+font-family:'Nunito';
+font-size:12px;
+color:white;
+opacity:.6;
+text-decoration:none;
+letter-spacing:.1em;
+text-transform:uppercase;
+}
+
+
+.nav-title{
+font-family:'IM Fell English';
+font-style:italic;
+color:white;
+opacity:.7;
+}
+
+
+.nav-center{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+
+.nav-seal{
+width:28px;
+height:28px;
+border:1px solid rgba(255,255,255,.3);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+}
+
+
+
+.nav-tab{
+font-family:'Nunito';
+font-size:11px;
+letter-spacing:.1em;
+text-transform:uppercase;
+color:white;
+opacity:.5;
+text-decoration:none;
+padding:1rem;
+}
+
+
+/* LAYOUT */
+
+.layout{
+display:grid;
+grid-template-columns:var(--sidebar-w) 1fr;
+min-height:calc(100vh - 56px);
+}
+
+
+
+.sidebar{
+background:var(--white);
+border-right:1px solid var(--page-darker);
+padding:2rem 1.5rem;
+position:sticky;
+top:56px;
+height:calc(100vh - 56px);
+}
+
+
+
+.sidebar-title{
+font-family:'IM Fell English';
+font-size:22px;
+text-align:center;
+margin-bottom:2rem;
+}
+
+
+
+.sidebar-label{
+font-family:'Nunito';
+font-size:10px;
+letter-spacing:.2em;
+color:var(--scarlet);
+font-weight:700;
+text-transform:uppercase;
+margin-bottom:.7rem;
+}
+
+
+.sidebar-link{
+display:block;
+padding:.5rem 0;
+border-bottom:1px solid var(--page-dark);
+text-decoration:none;
+color:var(--ink-soft);
+}
+
+
+
+.sidebar-note{
+margin-top:2rem;
+background:var(--scarlet-pale);
+padding:1rem;
+font-style:italic;
+font-size:13px;
+color:var(--scarlet);
+}
+
+
+
+/* MAIN */
+
+.main{
+max-width:850px;
+padding:3rem;
+}
+
+
+
+.eyebrow{
+font-family:'Nunito';
+font-weight:700;
+font-size:11px;
+letter-spacing:.2em;
+color:var(--scarlet);
+text-transform:uppercase;
+}
+
+
+
+h1{
+font-family:'IM Fell English';
+font-size:48px;
+font-weight:400;
+margin:.5rem 0;
+}
+
+
+
+.subtitle{
+font-style:italic;
+color:var(--ink-soft);
+}
+
+
+
+.notice{
+margin:2rem 0;
+background:var(--white);
+border-left:3px solid var(--scarlet);
+padding:1.3rem;
+line-height:1.8;
+}
+
+
+
+.section-title{
+margin-top:2.5rem;
+font-family:'Nunito';
+font-size:11px;
+letter-spacing:.2em;
+text-transform:uppercase;
+color:var(--scarlet);
+}
+
+
+
+.card{
+background:var(--white);
+border:1px solid var(--page-darker);
+border-radius:10px;
+padding:1.5rem;
+margin-top:1rem;
+}
+
+
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:1rem;
+}
+
+
+.stat{
+border-bottom:1px solid var(--page-dark);
+padding:.5rem;
+}
+
+
+.stat strong{
+font-family:'Nunito';
+font-size:11px;
+text-transform:uppercase;
+color:var(--scarlet);
+}
+
+
+
+/* ACCORDION */
+
+details{
+background:var(--white);
+border:1px solid var(--page-darker);
+border-radius:10px;
+margin-top:1rem;
+padding:1rem;
+}
+
+
+
+summary{
+cursor:pointer;
+font-family:'IM Fell English';
+font-size:22px;
+}
+
+
+
+.transcript{
+margin-top:1rem;
+line-height:1.8;
+}
+
+
+
+.speaker{
+font-family:'Nunito';
+font-weight:700;
+color:var(--scarlet);
+font-size:12px;
+letter-spacing:.1em;
+}
+
+
+
+.research-note{
+margin-top:1rem;
+background:var(--scarlet-pale);
+padding:1rem;
+font-style:italic;
+color:var(--scarlet);
+}
+
+
+
+/* BUTTON */
+
+.download{
+display:inline-block;
+margin-top:1rem;
+padding:.7rem 1rem;
+background:var(--ink);
+color:white;
+text-decoration:none;
+font-family:'Nunito';
+font-size:12px;
+letter-spacing:.1em;
+border-radius:6px;
+}
+
+
+
+.timeline div{
+padding:.8rem;
+border-left:2px solid var(--scarlet);
+margin-bottom:1rem;
+}
+
+
+
+footer{
+padding:2rem;
+text-align:center;
+font-style:italic;
+opacity:.5;
+}
+
+
+
+@media(max-width:700px){
+.layout{
+grid-template-columns:1fr;
+}
+.sidebar{
+display:none;
+}
+.main{
+padding:2rem;
+}
+}
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<nav>
+
+<a href="cases.html" class="nav-back">
+← Cases
+</a>
+
+
+<div class="nav-center">
+<div class="nav-seal">Π</div>
+<div class="nav-title">
+Paradoxa Chronicle
+</div>
+</div>
+
+
+<div>
+<a class="nav-tab" href="cases.html">
+Cases
+</a>
+</div>
+
+</nav>
+
+
+
+<div class="layout">
+
+
+<aside class="sidebar">
+
+
+<div class="sidebar-title">
+Paradoxa<br>
+Chronicle
+</div>
+
+
+<div class="sidebar-label">
+Record
+</div>
+
+
+<a class="sidebar-link" href="#">
+Summary
+</a>
+
+
+<a class="sidebar-link" href="#">
+Interviews
+</a>
+
+
+<a class="sidebar-link" href="#">
+Incidents
+</a>
+
+
+<a class="sidebar-link" href="#">
+Attachments
+</a>
+
+
+
+<div class="sidebar-note">
+
+Original documentation
+preserved since 1830.
+
+The Archive seal remains
+unchanged.
+
+</div>
+
+
+</aside>
+
+
+
+
+
+<main class="main">
+
+
+<div class="eyebrow">
+PC · 1830 · ENT · 167
+</div>
+
+
+<h1>
+The Proprietor
+</h1>
+
+
+<div class="subtitle">
+Entity Record · Public Access
+</div>
+
+
+
+<div class="notice">
+
+This file has been digitized from handwritten
+Chronicle documentation dated 1830.
+
+Certain sections have been reconstructed.
+Original materials remain archived.
+
+</div>
+
+
+
+<div class="card stats">
+
+
+<div class="stat">
+<strong>Classification</strong><br>
+Entity
+</div>
+
+
+<div class="stat">
+<strong>Status</strong><br>
+Missing / Active Concern
+</div>
+
+
+<div class="stat">
+<strong>First Recorded</strong><br>
+1830
+</div>
+
+
+<div class="stat">
+<strong>Known Alias</strong><br>
+N.R.
+</div>
+
+
+</div>
+
+
+
+
+<div class="section-title">
+Entity Summary
+</div>
+
+
+<div class="card">
+
+The subject presents as a human male proprietor.
+
+Early records describe normal speech,
+social behavior, and consistent hospitality.
+
+However, violations of rules established by
+the subject correlate with violent
+behavioral changes.
+
+The Chronicle does not classify the subject
+as religious or divine.
+
+</div>
+
+
+
+
+
+<div class="section-title">
+Interview Archive
+</div>
+
+
+
+<details>
+
+<summary>
+Interview 1830-A · Initial Contact
+</summary>
+
+
+<div class="transcript">
+
+
+<p class="speaker">
+INTERVIEWER:
+</p>
+
+<p>
+Your concern appears to be whether we will
+remain overnight.
+</p>
+
+
+<p class="speaker">
+SUBJECT:
+</p>
+
+<p>
+Naturally.
+</p>
+
+
+<p class="speaker">
+INTERVIEWER:
+</p>
+
+<p>
+Why?
+</p>
+
+
+<p class="speaker">
+SUBJECT:
+</p>
+
+<p>
+The rooms are prepared.
+</p>
+
+
+<div class="research-note">
+
+Researcher's note:
+
+Subject avoided direct answers and
+redirected conversation toward hospitality.
+
+</div>
+
+
+</div>
+
+</details>
+
+
+
+
+
+<details>
+
+<summary>
+Interview 1955-B · Follow-up
+</summary>
+
+
+<div class="transcript">
+
+
+<p class="speaker">
+INTERVIEWER:
+</p>
+
+<p>
+Do you remember the Salon?
+</p>
+
+
+<p class="speaker">
+N.R:
+</p>
+
+<p>
+Yes.
+</p>
+
+
+<p class="speaker">
+INTERVIEWER:
+</p>
+
+<p>
+Are you the same individual recorded in 1830?
+</p>
+
+
+<p class="speaker">
+N.R:
+</p>
+
+<p>
+...
+</p>
+
+
+
+<div class="research-note">
+
+Researcher's note:
+
+Subject displayed increased human-like behavior
+compared to earlier records.
+
+</div>
+
+
+</div>
+
+</details>
+
+
+
+
+
+
+
+<div class="section-title">
+Incident Timeline
+</div>
+
+
+
+<div class="card timeline">
+
+
+<div>
+<b>1830</b><br>
+Salon incident. Nine civilian deaths recorded.
+</div>
+
+
+<div>
+<b>1831</b><br>
+Containment observation initiated.
+Subject unable to leave premises.
+</div>
+
+
+<div>
+<b>1955</b><br>
+Motel incident. Temporal displacement suspected.
+</div>
+
+
+<div>
+<b>Current</b><br>
+Investigation ongoing.
+Location redacted.
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="section-title">
+Attachments
+</div>
+
+
+<div class="card">
+
+
+Police report:
+1830 Salon Incident
+
+
+<br><br>
+
+
+Newspaper clipping:
+[Image pending]
+
+
+<br><br>
+
+
+<a class="download" href="#">
+Download Archived PDF
+</a>
+
+
+</div>
+
+
+
+
+
+
+<div class="section-title">
+Research Note
+</div>
+
+
+<div class="card">
+
+The subject may not be protecting the building.
+
+Current theory suggests:
+
+the building may be protecting the subject.
+
+</div>
+
+
+
+<footer>
+παράδοξα
+</footer>
+
+
+
+</main>
+
+
+</div>
+
+
+</body>
+</html>
