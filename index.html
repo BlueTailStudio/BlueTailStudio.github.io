@@ -365,17 +365,23 @@
     align-items: flex-start;
   }
 
-  .team-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    flex-shrink: 0;
-  }
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1.1rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
   .team-avatar-gorilla { background: var(--blue-pale); }
   .team-avatar-kitsune { background: #FEF3D8; }
